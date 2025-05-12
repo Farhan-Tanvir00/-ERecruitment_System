@@ -1,0 +1,110 @@
+﻿@using ERecruitmentSystem02.Models.View
+@model JobAndApply
+
+@{
+    ViewData["Title"] = "Apply Job";
+}
+
+
+@if (Model?.JobApply?.BaseResponse?.Status != null)
+{
+    <div class="container mt-3">
+        <div class="alert @(Model.JobApply.BaseResponse.Status == "SUCCESS" ? "alert-success" : "alert-danger")">
+            @Model.JobApply.BaseResponse.Message
+        </div>
+    </div>
+}
+
+<div class="container my-5">
+    <div class="card p-4 shadow-sm" style="border-radius: 0;">
+        <div class="row">
+            <!-- Job Details -->
+            <div class="col-md-6 border-end">
+                @if (Model.Job != null)
+                {
+                    <dl class="row">
+                        <dt class="col-sm-5">Job ID</dt>
+                        <dd class="col-sm-7">@Model.Job.JobID</dd>
+
+                        <dt class="col-sm-5">Position</dt>
+                        <dd class="col-sm-7">@Model.Job.Position</dd>
+
+                        <dt class="col-sm-5">Number of Posts</dt>
+                        <dd class="col-sm-7">@Model.Job.NumberOfPosts</dd>
+
+                        <dt class="col-sm-5">Salary</dt>
+                        <dd class="col-sm-7">@Model.Job.Salary.ToString("C")</dd>
+
+                        <dt class="col-sm-5">Graduation</dt>
+                        <dd class="col-sm-7">@Model.Job.Graduation</dd>
+
+                        <dt class="col-sm-5">Post Graduation</dt>
+                        <dd class="col-sm-7">@Model.Job.PostGraduation</dd>
+
+                        <dt class="col-sm-5">Deadline</dt>
+                        <dd class="col-sm-7">@Model.Job.Deadline.ToString("yyyy-MM-dd")</dd>
+
+                        <dt class="col-sm-5">Details</dt>
+                        <dd class="col-sm-7">@Model.Job.Details</dd>
+
+                        <dt class="col-sm-5">Education Requirement</dt>
+                        <dd class="col-sm-7">@Model.Job.EduReqDetails</dd>
+
+                        <dt class="col-sm-5">Published By</dt>
+                        <dd class="col-sm-7">@Model.Job.PublishedBy</dd>
+
+                        <dt class="col-sm-5">Max Age</dt>
+                        <dd class="col-sm-7">@Model.Job.MaxAge</dd>
+                    </dl>
+                }
+                else
+                {
+                    <p class="text-muted text-center">No job information available.</p>
+                }
+            </div>
+
+            <!-- Application Form (Original Design) -->
+            <div class="col-md-6 d-flex justify-content-center align-items-center">
+                <div style="width: 100%; max-width: 400px;">
+                    <h4 class="mb-2 text-center">Apply for Job</h4>
+
+                    <form asp-action="ApplyforPosition" method="post">
+                        <div class="mb-1">
+                            <label asp-for="JobApply.JobId" class="col-form-label">Job ID : @Model.JobApply.JobId</label>
+                            <input asp-for="JobApply.JobId" class="form-control form-control-sm" hidden />
+                            <span asp-validation-for="JobApply.JobId" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-1">
+                            <label asp-for="JobApply.ApplicantId" class="col-form-label-sm">CV Identification No</label>
+                            <input asp-for="JobApply.ApplicantId" type="text" class="form-control form-control-sm" required />
+                            <span asp-validation-for="JobApply.ApplicantId" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-1">
+                            <label asp-for="JobApply.Password" class="col-form-label-sm">Password</label>
+                            <input asp-for="JobApply.Password" type="password" class="form-control form-control-sm" required />
+                            <span asp-validation-for="JobApply.Password" class="text-danger"></span>
+                        </div>
+
+                        <div class="row mt-3 mb-3">
+                            <div class="col-md-6">
+                                <a class="text-secondary text-decoration-none" asp-controller="JobApply" asp-action="RegistrationAndApply" asp-route-id="@Model.JobApply.JobId">Register Now</a>
+                            </div>
+                            <div class="col-md-6 text-end">
+                                <a class="text-secondary text-decoration-none ms-6" asp-area="" asp-controller="Account" asp-action="ForgotPassword">Forgot Password</a>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">Apply</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const field2 = document.getElementById("ApplicantId");
+    if (field2) field2.value = null;
+</script>

@@ -1,0 +1,143 @@
+﻿/* ===== CV Base Container ===== */
+
+
+
+.cv-container {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    width: 794px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    box-sizing: border-box;
+}
+
+.cv-container,
+.cv-container * {
+   font-family: Arial, sans-serif;
+   font-size: 13px;
+}
+
+/* ===== Header Area ===== */
+.cv-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.cv-info {
+    flex: 1 1 60%;
+    min-width: 250px;
+}
+
+.cv-photo {
+    flex: 1 1 150px;
+    text-align: right;
+    margin-left: auto;
+}
+
+    .cv-photo img {
+        max-width: 120px;
+        height: auto;
+        border: 1px solid #ccc;
+    }
+
+/* ===== Table Layout ===== */
+.table-responsive {
+    overflow-x: auto;
+}
+
+.cv-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 13px;
+}
+
+.cv-table {
+    width: 100%;
+    table-layout: fixed; /* Prevents overflow */
+    word-wrap: break-word;
+}
+
+    .cv-table th,
+    .cv-table td {
+        border: 1px solid #ccc;
+        padding: 2px 2px;
+        text-align: center;
+        vertical-align: middle;
+        word-break: break-word;
+    }
+
+    .cv-table thead {
+        background-color: #f0f0f0;
+    }
+
+/* ===== Table Column Widths ===== */
+.norm-fields {
+    min-width: 100px;
+}
+
+.job-type,
+.datefields,
+.language-selection,
+.grade-year-roll-col {
+    min-width: 90px;
+}
+
+.in-form-area {
+    min-width: 120px;
+}
+
+.examname-division {
+    min-width: 110px;
+}
+
+.subject-board {
+    min-width: 100px;
+}
+
+.wide {
+    min-width: 250px;
+    width: 250px;
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 768px) {
+    .cv-container {
+        width: 100%;
+        padding: 10px;
+        font-size: 13px;
+    }
+
+    .cv-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .cv-photo {
+        text-align: left;
+        margin-top: 10px;
+    }
+
+        .cv-photo img {
+            max-width: 100px;
+        }
+
+    .cv-table {
+        font-size: 13px;
+    }
+
+    p {
+        display: block;
+        margin-right: 20px;
+    }
+
+    .wide {
+        min-width: 150px;
+        width: auto;
+    }
+}

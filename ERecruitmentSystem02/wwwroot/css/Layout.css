@@ -1,0 +1,17 @@
+﻿.lgimg {
+    height: 55px;
+    width: auto;
+}
+
+@media (max-width: 768px) {
+    .lgimg {
+        height: 35px;
+        width: auto;
+    }
+}
+
+@media (max-width: 350px) {
+    .lgimg {
+        height: 30px;
+    }
+}

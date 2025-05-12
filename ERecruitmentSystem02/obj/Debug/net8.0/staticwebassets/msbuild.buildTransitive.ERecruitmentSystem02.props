@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\ERecruitmentSystem02.props" />
+</Project>

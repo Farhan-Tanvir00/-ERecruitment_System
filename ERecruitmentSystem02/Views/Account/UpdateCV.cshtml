@@ -1,0 +1,501 @@
+﻿@model ERecruitmentSystem02.Models.View.RegistrationPageViewModel
+
+@if (Model != null && Model.BaseResponse != null && Model.BaseResponse.Status != null)
+{
+
+    @if (Model.BaseResponse.Status == "SUCCESS")
+    {
+        <div class="alert alert-success">
+            @Model.BaseResponse.Message
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger">
+            @Model.BaseResponse.Message
+        </div>
+    }
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-10 mx-auto">
+            <form asp-controller="Account" asp-action="UpdateCv" method="post">
+
+                <div class="bg-success pt-1 pb-1 text-white text-center">
+                    <p class="m-0 fs-6 fw-bold">Educational Qualification(Board/University & Year Of Passing)</p>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-sm text-center align-middle external-styles">
+                        <thead class="text-center align-middle">
+                            <tr>
+                                <th rowspan="2" scope="col">Level</th>
+                                <th class="examname-division" rowspan="2" scope="col">Name of Examination</th>
+                                <th class="subject-board" rowspan="2" scope="col">Group/Subject</th>
+                                <th class="examname-division" rowspan="2" scope="col"> Division/<br />Class/Grade </th>
+                                <th colspan="2" scope="col">Grade</th>
+                                <th class="grade-year-roll-col" rowspan="2" scope="col">Roll No</th>
+                                <th class="subject-board" rowspan="2" scope="col">Board/University</th>
+                                <th class="grade-year-roll-col" rowspan="2" scope="col">Year Of Passing [yyyy]</th>
+                            </tr>
+                            <tr>
+                                <th class="grade-year-roll-col" scope="col">GPA/CGPA</th>
+                                <th class="grade-year-roll-col" scope="col">Out Of</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td> SSC <br />/Equivalent </td>
+                                <td>
+                                    <select class="form-select form-select-sm" asp-for="UsersEducationalQualifications[0].NameOfExamination">
+                                        <option value="SSC" selected>SSC</option>
+                                        <option value="Dakhil">Dakhil</option>
+                                        <option value="O Level">O Level</option>
+                                        <option value="SSC Vocational">SSC Vocational</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="form-select form-select-sm" asp-for="UsersEducationalQualifications[0].GroupOrSubject">
+                                        <option value="-1" selected>--Select--</option>
+                                        <option value="Science">Science</option>
+                                        <option value="Humanities">Humanities</option>
+                                        <option value="Commerse">Commerse</option>
+                                        <option value="Business">Business Studies</option>
+                                        <option value="General">General</option>
+                                        <option value="Others">Others</option>
+
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="form-select form-select-sm" asp-for="UsersEducationalQualifications[0].DivisionOrClassOrGrade" id="SscGradeSelect">
+                                        <option selected>--Select--</option>
+                                        <option>First</option>
+                                        <option>Second</option>
+                                        <option>Grade</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control form-control-sm" asp-for="UsersEducationalQualifications[0].GpaOrCgpa" id="sscGpa" readonly>
+                                    <span asp-validation-for="UsersEducationalQualifications[0].GpaOrCgpa" class="text-danger" style="font-size: 0.75rem;"></span>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control form-control-sm" asp-for="UsersEducationalQualifications[0].GpaOutOf" id="sscOutOf" readonly>
+                                    <span asp-validation-for="UsersEducationalQualifications[0].GpaOutOf" class="text-danger" style="font-size: 0.75rem;"></span>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control form-control-sm" asp-for="UsersEducationalQualifications[0].RollNo">
+                                    <span asp-validation-for="UsersEducationalQualifications[0].RollNo" class="text-danger" style="font-size: 0.75rem;"></span>
+                                </td>
+                                <td>
+                                    <select class="form-select form-select-sm" asp-for="UsersEducationalQualifications[0].BoardOrUnicersity">
+                                        <option value="-1" selected>--Select--</option>
+                                        <option value="Dhaka">Dhaka</option>
+                                        <option value="Chittagong">Chittagong</option>
+                                        <option value="Rajshahi">Rajshahi</option>
+                                        <option value="Khulna">Khulna</option>
+                                        <option value="Barisal">Barisal</option>
+                                        <option value="Sylhet">Sylhet</option>
+                                        <option value="Comilla">Comilla</option>
+                                        <option value="Mymensingh">Mymensingh</option>
+                                        <option value="Madrasah">Madrasah</option>
+                                        <option value="Technical">Technical</option>
+                                        <option value="National University">National University</option>
+                                        <option value="Other">Other</option>
+
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control form-control-sm" asp-for="UsersEducationalQualifications[0].PassingYear">
+                                    <span asp-validation-for="UsersEducationalQualifications[0].PassingYear" class="text-danger" style="font-size: 0.75rem;"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td> HSC <br />/Equivalent </td>
+                                <td>
+                                    <select class="form-select form-select-sm" asp-for="UsersEducationalQualifications[1].NameOfExamination">
+                                        <option value="HSC">HSC</option>
+                                        <option value="Alim">Alim</option>
+                                        <option value="A Level">A Level</option>
+                                        <option value="Diploma">Diploma</option>
+
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="form-select form-select-sm" asp-for="UsersEducationalQualifications[1].GroupOrSubject">
+                                        <option value="-1" selected>--Select--</option>
+                                        <option value="Science">Science</option>
+                                        <option value="Humanities">Humanities</option>
+                                        <option value="Commerse">Commerse</option>
+                                        <option value="Business">Business Studies</option>
+                                        <option value="General">General</option>
+                                        <option value="Others">Others</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="form-select form-select-sm" asp-for="UsersEducationalQualifications[1].DivisionOrClassOrGrade" id="HscGradeSelect">
+                                        <option selected>--Select--</option>
+                                        <option>First</option>
+                                        <option>Second</option>
+                                        <option>Grade</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control form-control-sm" asp-for="UsersEducationalQualifications[1].GpaOrCgpa" id="hscGpa" readonly>
+                                    <span asp-validation-for="UsersEducationalQualifications[1].GpaOrCgpa" class="text-danger" style="font-size: 0.75rem;"></span>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control form-control-sm" asp-for="UsersEducationalQualifications[1].GpaOutOf" id="hscOutOf" readonly>
+                                    <span asp-validation-for="UsersEducationalQualifications[1].GpaOutOf" class="text-danger" style="font-size: 0.75rem;"></span>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control form-control-sm" asp-for="UsersEducationalQualifications[1].RollNo">
+                                    <span asp-validation-for="UsersEducationalQualifications[1].RollNo" class="text-danger" style="font-size: 0.75rem;"></span>
+                                </td>
+                                <td>
+                                    <select class="form-select form-select-sm" asp-for="UsersEducationalQualifications[1].BoardOrUnicersity">
+                                        <option value="-1" selected>--Select--</option>
+                                        <option value="Dhaka">Dhaka</option>
+                                        <option value="Chittagong">Chittagong</option>
+                                        <option value="Rajshahi">Rajshahi</option>
+                                        <option value="Khulna">Khulna</option>
+                                        <option value="Barisal">Barisal</option>
+                                        <option value="Sylhet">Sylhet</option>
+                                        <option value="Comilla">Comilla</option>
+                                        <option value="Mymensingh">Mymensingh</option>
+                                        <option value="Madrasah">Madrasah</option>
+                                        <option value="Technical">Technical</option>
+                                        <option value="National University">National University</option>
+                                        <option value="Other">Other</option>
+
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control form-control-sm" asp-for="UsersEducationalQualifications[1].PassingYear">
+                                    <span asp-validation-for="UsersEducationalQualifications[1].PassingYear" class="text-danger" style="font-size: 0.75rem;"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td> Graduation </td>
+                                <td>
+                                    <select class="form-select form-select-sm" asp-for="UsersEducationalQualifications[2].NameOfExamination">
+                                        <option value="-1" selected>--Select--</option>
+                                        <option value="BSc">BSc</option>
+                                        <option value="BA">BA</option>
+                                        <option value="BBA">BBA</option>
+                                        <option value="BCom">BCom</option>
+                                        <option value="LLB">LLB</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="form-select form-select-sm" asp-for="UsersEducationalQualifications[2].GroupOrSubject">
+                                        <option value="-1" selected>--Select--</option>
+                                        <option value="CSE">CSE</option>
+                                        <option value="EEE">EEE</option>
+                                        <option value="English">English</option>
+                                        <option value="History">History</option>
+                                        <option value="Marketing">Marketing</option>
+                                        <option value="Finance">Finance</option>
+                                        <option value="Accounting">Accounting</option>
+                                        <option value="Economics">Economics</option>
+                                        <option value="CivilLaw">Civil Law</option>
+                                        <option value="CorporateLaw">Corporate Law</option>
+                                        <option value="Others">Others</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="form-select form-select-sm" asp-for="UsersEducationalQualifications[2].DivisionOrClassOrGrade" id="GrGradeSelect">
+                                        <option selected>--Select--</option>
+                                        <option>First</option>
+                                        <option>Second</option>
+                                        <option>Grade</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control form-control-sm" asp-for="UsersEducationalQualifications[2].GpaOrCgpa" id="grCgpa" readonly>
+                                    <span asp-validation-for="UsersEducationalQualifications[2].GpaOrCgpa" class="text-danger" style="font-size: 0.75rem;"></span>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control form-control-sm" asp-for="UsersEducationalQualifications[2].GpaOutOf" id="grOutOf" readonly>
+                                    <span asp-validation-for="UsersEducationalQualifications[2].GpaOutOf" class="text-danger" style="font-size: 0.75rem;"></span>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control form-control-sm" asp-for="UsersEducationalQualifications[2].RollNo">
+                                    <span asp-validation-for="UsersEducationalQualifications[2].RollNo" class="text-danger" style="font-size: 0.75rem;"></span>
+                                </td>
+                                <td>
+                                    <select class="form-select form-select-sm" asp-for="UsersEducationalQualifications[2].BoardOrUnicersity">
+                                        <option value="-1" selected>--Select--</option>
+                                        <option value="DU">Dhaka University (DU)</option>
+                                        <option value="JU">Jahangirnagar University (JU)</option>
+                                        <option value="RU">Rajshahi University (RU)</option>
+                                        <option value="Others">Others</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control form-control-sm" asp-for="UsersEducationalQualifications[2].PassingYear">
+                                    <span asp-validation-for="UsersEducationalQualifications[2].PassingYear" class="text-danger" style="font-size: 0.75rem;"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td> Post <br />Graduation 1</td>
+                                <td>
+                                    <select class="form-select form-select-sm" asp-for="UsersEducationalQualifications[3].NameOfExamination">
+                                        <option value="-1" selected>--Select--</option>
+                                        <option value="MSc">MSc</option>
+                                        <option value="MA">MA</option>
+                                        <option value="MBA">MBA</option>
+                                        <option value="MCom">MCom</option>
+                                        <option value="MEng">MEng</option>
+                                        <option value="Others">Others</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="form-select form-select-sm" asp-for="UsersEducationalQualifications[3].GroupOrSubject">
+                                        <option value="-1" selected>--Select--</option>
+                                        <option value="Physics">Physics</option>
+                                        <option value="Chemistry">Chemistry</option>
+                                        <option value="Mathematics">Mathematics</option>
+                                        <option value="Economics">Economics</option>
+                                        <option value="English">English</option>
+                                        <option value="BusinessAdministration">Business Administration</option>
+                                        <option value="ComputerScience">Computer Science</option>
+                                        <option value="Law">Law</option>
+                                        <option value="Others">Others</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="form-select form-select-sm" asp-for="UsersEducationalQualifications[3].DivisionOrClassOrGrade" id="Pg1GradeSelect">
+                                        <option selected>--Select--</option>
+                                        <option>First</option>
+                                        <option>Second</option>
+                                        <option>Grade</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control form-control-sm" asp-for="UsersEducationalQualifications[3].GpaOrCgpa" id="pg1Cgpa" readonly>
+                                    <span asp-validation-for="UsersEducationalQualifications[3].GpaOrCgpa" class="text-danger" style="font-size: 0.75rem;"></span>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control form-control-sm" asp-for="UsersEducationalQualifications[3].GpaOutOf" id="pg1OutOf" readonly>
+                                    <span asp-validation-for="UsersEducationalQualifications[3].GpaOutOf" class="text-danger" style="font-size: 0.75rem;"></span>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control form-control-sm" asp-for="UsersEducationalQualifications[3].RollNo">
+                                    <span asp-validation-for="UsersEducationalQualifications[3].RollNo" class="text-danger" style="font-size: 0.75rem;"></span>
+                                </td>
+                                <td>
+                                    <select class="form-select form-select-sm" asp-for="UsersEducationalQualifications[3].BoardOrUnicersity">
+                                        <option value="-1" selected>--Select--</option>
+                                        <option value="DU">Dhaka University (DU)</option>
+                                        <option value="JU">Jahangirnagar University (JU)</option>
+                                        <option value="RU">Rajshahi University (RU)</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control form-control-sm" asp-for="UsersEducationalQualifications[3].PassingYear">
+                                    <span asp-validation-for="UsersEducationalQualifications[3].PassingYear" class="text-danger" style="font-size: 0.75rem;"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td> Post <br /> Graduation 2 </td>
+                                <td>
+                                    <select class="form-select form-select-sm" asp-for="UsersEducationalQualifications[4].NameOfExamination">
+                                        <option value="-1" selected>--Select--</option>
+                                        <option value="MSc">MSc</option>
+                                        <option value="MA">MA</option>
+                                        <option value="MBA">MBA</option>
+                                        <option value="MCom">MCom</option>
+                                        <option value="MEng">MEng</option>
+                                        <option value="Others">Others</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="form-select form-select-sm" asp-for="UsersEducationalQualifications[4].GroupOrSubject">
+                                        <option value="-1" selected>--Select--</option>
+                                        <option value="Physics">Physics</option>
+                                        <option value="Chemistry">Chemistry</option>
+                                        <option value="Mathematics">Mathematics</option>
+                                        <option value="Economics">Economics</option>
+                                        <option value="English">English</option>
+                                        <option value="BusinessAdministration">Business Administration</option>
+                                        <option value="ComputerScience">Computer Science</option>
+                                        <option value="Law">Law</option>
+                                        <option value="Others">Others</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="form-select form-select-sm" asp-for="UsersEducationalQualifications[4].DivisionOrClassOrGrade" id="Pg2GradeSelect">
+                                        <option selected>--Select--</option>
+                                        <option>First</option>
+                                        <option>Second</option>
+                                        <option>Grade</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control form-control-sm" asp-for="UsersEducationalQualifications[4].GpaOrCgpa" id="pg2Cgpa" readonly>
+                                    <span asp-validation-for="UsersEducationalQualifications[4].GpaOrCgpa" class="text-danger" style="font-size: 0.75rem;"></span>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control form-control-sm" asp-for="UsersEducationalQualifications[4].GpaOutOf" id="pg2OutOf" readonly>
+                                    <span asp-validation-for="UsersEducationalQualifications[4].GpaOutOf" class="text-danger" style="font-size: 0.75rem;"></span>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control form-control-sm" asp-for="UsersEducationalQualifications[4].RollNo">
+                                    <span asp-validation-for="UsersEducationalQualifications[4].RollNo" class="text-danger" style="font-size: 0.75rem;"></span>
+                                </td>
+                                <td>
+                                    <select class="form-select form-select-sm" asp-for="UsersEducationalQualifications[4].BoardOrUnicersity">
+                                        <option value="-1" selected>--Select--</option>
+                                        <option value="DU">Dhaka University (DU)</option>
+                                        <option value="JU">Jahangirnagar University (JU)</option>
+                                        <option value="RU">Rajshahi University (RU)</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control form-control-sm" asp-for="UsersEducationalQualifications[4].PassingYear">
+                                    <span asp-validation-for="UsersEducationalQualifications[4].PassingYear" class="text-danger" style="font-size: 0.75rem;"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td> Post <br /> Graduation 3 </td>
+                                <td>
+                                    <select class="form-select form-select-sm" asp-for="UsersEducationalQualifications[5].NameOfExamination">
+                                        <option value="-1" selected>--Select--</option>
+                                        <option value="MSc">MSc</option>
+                                        <option value="MA">MA</option>
+                                        <option value="MBA">MBA</option>
+                                        <option value="MCom">MCom</option>
+                                        <option value="MEng">MEng</option>
+                                        <option value="Others">Others</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="form-select form-select-sm" asp-for="UsersEducationalQualifications[5].GroupOrSubject">
+                                        <option value="-1" selected>--Select--</option>
+                                        <option value="Physics">Physics</option>
+                                        <option value="Chemistry">Chemistry</option>
+                                        <option value="Mathematics">Mathematics</option>
+                                        <option value="Economics">Economics</option>
+                                        <option value="English">English</option>
+                                        <option value="BusinessAdministration">Business Administration</option>
+                                        <option value="ComputerScience">Computer Science</option>
+                                        <option value="Law">Law</option>
+                                        <option value="Others">Others</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="form-select form-select-sm" asp-for="UsersEducationalQualifications[5].DivisionOrClassOrGrade" id="Pg3GradeSelect">
+                                        <option selected>--Select--</option>
+                                        <option>First</option>
+                                        <option>Second</option>
+                                        <option>Grade</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control form-control-sm" asp-for="UsersEducationalQualifications[5].GpaOrCgpa" id="pg3Cgpa" readonly>
+                                    <span asp-validation-for="UsersEducationalQualifications[5].GpaOrCgpa" class="text-danger" style="font-size: 0.75rem;"></span>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control form-control-sm" asp-for="UsersEducationalQualifications[5].GpaOutOf" id="pg3OutOf" readonly>
+                                    <span asp-validation-for="UsersEducationalQualifications[5].GpaOutOf" class="text-danger" style="font-size: 0.75rem;"></span>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control form-control-sm" asp-for="UsersEducationalQualifications[5].RollNo">
+                                    <span asp-validation-for="UsersEducationalQualifications[5].RollNo" class="text-danger" style="font-size: 0.75rem;"></span>
+                                </td>
+                                <td>
+                                    <select class="form-select form-select-sm" asp-for="UsersEducationalQualifications[5].BoardOrUnicersity">
+                                        <option value="-1" selected>--Select--</option>
+                                        <option value="DU">Dhaka University (DU)</option>
+                                        <option value="JU">Jahangirnagar University (JU)</option>
+                                        <option value="RU">Rajshahi University (RU)</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control form-control-sm" asp-for="UsersEducationalQualifications[5].PassingYear">
+                                    <span asp-validation-for="UsersEducationalQualifications[5].PassingYear" class="text-danger" style="font-size: 0.75rem;"></span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                @* Result form...... *@
+                <div class="row">
+                    <div class="col-12">
+                        <button class="btn btn-success form-control">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById("SscGradeSelect").addEventListener('change', function(){
+        if(document.getElementById("SscGradeSelect").value === 'Grade'){
+        document.getElementById("sscGpa").readOnly = false;
+    document.getElementById("sscOutOf").readOnly = false;
+        }
+    else{
+        document.getElementById("sscGpa").readOnly = true;
+    document.getElementById("sscOutOf").readOnly = true;
+        }
+    });
+
+    document.getElementById("HscGradeSelect").addEventListener('change', function(){
+        if(document.getElementById("HscGradeSelect").value === 'Grade'){
+        document.getElementById("hscGpa").readOnly = false;
+    document.getElementById("hscOutOf").readOnly = false;
+        }
+    else{
+        document.getElementById("hscGpa").readOnly = true;
+    document.getElementById("hscOutOf").readOnly = true;
+        }
+    });
+
+    document.getElementById("GrGradeSelect").addEventListener('change', function(){
+        if(document.getElementById("GrGradeSelect").value === 'Grade'){
+        document.getElementById("grCgpa").readOnly = false;
+    document.getElementById("grOutOf").readOnly = false;
+        }
+    else{
+        document.getElementById("grCgpa").readOnly = true;
+    document.getElementById("grOutOf").readOnly = true;
+        }
+    });
+
+    document.getElementById("Pg1GradeSelect").addEventListener('change', function(){
+        if(document.getElementById("Pg1GradeSelect").value === 'Grade'){
+        document.getElementById("pg1Cgpa").readOnly = false;
+    document.getElementById("pg1OutOf").readOnly = false;
+        }
+    else{
+        document.getElementById("pg1Cgpa").readOnly = true;
+    document.getElementById("pg1OutOf").readOnly = true;
+        }
+    });
+
+    document.getElementById("Pg2GradeSelect").addEventListener('change', function(){
+        if(document.getElementById("Pg2GradeSelect").value === 'Grade'){
+        document.getElementById("pg2Cgpa").readOnly = false;
+    document.getElementById("pg2OutOf").readOnly = false;
+        }
+    else{
+        document.getElementById("pg2Cgpa").readOnly = true;
+    document.getElementById("pg2OutOf").readOnly = true;
+        }
+    });
+
+    document.getElementById("Pg3GradeSelect").addEventListener('change', function(){
+        if(document.getElementById("Pg3GradeSelect").value === 'Grade'){
+        document.getElementById("pg3Cgpa").readOnly = false;
+    document.getElementById("pg3OutOf").readOnly = false;
+        }
+    else{
+        document.getElementById("pg3Cgpa").readOnly = true;
+    document.getElementById("pg3OutOf").readOnly = true;
+        }
+    });
+
+</script>

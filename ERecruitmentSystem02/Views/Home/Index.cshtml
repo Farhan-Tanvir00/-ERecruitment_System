@@ -1,0 +1,43 @@
+﻿@using ERecruitmentSystem02.Models.View
+@model List<Job>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Error"]
+    </div>
+}
+
+<h2 class="mb-3">Available Jobs</h2>
+
+
+
+<table class="table table-bordered table-striped mt-3">
+    <thead>
+        <tr>
+            <th>Position</th>
+            <th>Available Posts</th>
+            <th>Deadline</th>
+            <th>Education Requirements</th>
+            <th>Apply</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var job in Model)
+        {
+            <tr>
+                <td>@job.Position</td>
+                <td>@job.NumberOfPosts</td>
+                <td>@job.Deadline.ToString("yyyy-MM-dd")</td>
+                <td>@job.EduReqDetails</td>
+                <td class="text-center">
+                    <a class="btn btn-primary btn-sm me-2" asp-controller="JobApply" asp-action="ApplyforPosition" asp-route-id="@job.JobID">Apply</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

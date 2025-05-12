@@ -1,0 +1,54 @@
+﻿@using Microsoft.AspNetCore.Authentication
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims
+
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    var isAuthenticated = HttpContextAccessor.HttpContext.User.Identity.IsAuthenticated;
+}
+
+@if (isAuthenticated)
+{
+
+
+    <div class="d-flex flex-column flex-md-row align-items-md-center gap-3">
+        <li class="nav-item dropdown list-unstyled mb-0">
+            <a class="nav-link dropdown-toggle text-dark" href="#" id="accountsDropdown" role="button"
+               data-bs-toggle="dropdown" aria-expanded="false">
+                My Account
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="accountsDropdown">
+                <li>
+                    <a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="ChangePassword">Change Password</a>
+                </li>
+                <li>
+                    <a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="MyCv">My CV</a>
+                </li>
+                <li>
+                    <a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="UpdateCv">Edit CV</a>
+                </li>
+            </ul>
+        </li>
+
+        <form asp-controller="Account" asp-action="Logout" method="post" class="d-flex align-items-center mb-0">
+            <span class="me-2 fw-semibold text-success border px-3 py-1 rounded bg-light">Hello, @User.Identity.Name!</span>
+            <button type="submit" class="btn btn-danger btn-sm custom-btn2">Logout</button>
+        </form>
+    </div>
+
+
+}
+else
+{
+  
+    <div class="d-flex flex-column flex-md-row align-items-md-center gap-2">
+        
+
+        <a class="btn btn-primary btn-sm custom-btn" asp-controller="Account" asp-action="Login">Login</a>
+        <a class="btn btn-secondary btn-sm custom-btn" asp-controller="Account" asp-action="Register">Register</a>
+    </div>
+
+}

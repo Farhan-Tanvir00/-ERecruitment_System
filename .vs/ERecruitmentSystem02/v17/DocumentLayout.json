@@ -1,0 +1,196 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\ASUS\\Desktop\\New folder (4)\\BasicC#\\ERecruitmentSystem02\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C95B4CE2-D870-4CCB-AEA1-8847964339B8}|ERecruitmentSystem02\\ERecruitmentSystem02.csproj|c:\\users\\asus\\desktop\\new folder (4)\\basicc#\\erecruitmentsystem02\\erecruitmentsystem02\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C95B4CE2-D870-4CCB-AEA1-8847964339B8}|ERecruitmentSystem02\\ERecruitmentSystem02.csproj|solutionrelative:erecruitmentsystem02\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C95B4CE2-D870-4CCB-AEA1-8847964339B8}|ERecruitmentSystem02\\ERecruitmentSystem02.csproj|c:\\users\\asus\\desktop\\new folder (4)\\basicc#\\erecruitmentsystem02\\erecruitmentsystem02\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C95B4CE2-D870-4CCB-AEA1-8847964339B8}|ERecruitmentSystem02\\ERecruitmentSystem02.csproj|solutionrelative:erecruitmentsystem02\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C95B4CE2-D870-4CCB-AEA1-8847964339B8}|ERecruitmentSystem02\\ERecruitmentSystem02.csproj|c:\\users\\asus\\desktop\\new folder (4)\\basicc#\\erecruitmentsystem02\\erecruitmentsystem02\\models\\domain\\usersbasic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C95B4CE2-D870-4CCB-AEA1-8847964339B8}|ERecruitmentSystem02\\ERecruitmentSystem02.csproj|solutionrelative:erecruitmentsystem02\\models\\domain\\usersbasic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C95B4CE2-D870-4CCB-AEA1-8847964339B8}|ERecruitmentSystem02\\ERecruitmentSystem02.csproj|c:\\users\\asus\\desktop\\new folder (4)\\basicc#\\erecruitmentsystem02\\erecruitmentsystem02\\views\\shared\\_loginpartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C95B4CE2-D870-4CCB-AEA1-8847964339B8}|ERecruitmentSystem02\\ERecruitmentSystem02.csproj|solutionrelative:erecruitmentsystem02\\views\\shared\\_loginpartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C95B4CE2-D870-4CCB-AEA1-8847964339B8}|ERecruitmentSystem02\\ERecruitmentSystem02.csproj|c:\\users\\asus\\desktop\\new folder (4)\\basicc#\\erecruitmentsystem02\\erecruitmentsystem02\\views\\account\\loginpage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C95B4CE2-D870-4CCB-AEA1-8847964339B8}|ERecruitmentSystem02\\ERecruitmentSystem02.csproj|solutionrelative:erecruitmentsystem02\\views\\account\\loginpage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C95B4CE2-D870-4CCB-AEA1-8847964339B8}|ERecruitmentSystem02\\ERecruitmentSystem02.csproj|c:\\users\\asus\\desktop\\new folder (4)\\basicc#\\erecruitmentsystem02\\erecruitmentsystem02\\views\\jobapply\\applypage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C95B4CE2-D870-4CCB-AEA1-8847964339B8}|ERecruitmentSystem02\\ERecruitmentSystem02.csproj|solutionrelative:erecruitmentsystem02\\views\\jobapply\\applypage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C95B4CE2-D870-4CCB-AEA1-8847964339B8}|ERecruitmentSystem02\\ERecruitmentSystem02.csproj|c:\\users\\asus\\desktop\\new folder (4)\\basicc#\\erecruitmentsystem02\\erecruitmentsystem02\\controllers\\jobapplycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C95B4CE2-D870-4CCB-AEA1-8847964339B8}|ERecruitmentSystem02\\ERecruitmentSystem02.csproj|solutionrelative:erecruitmentsystem02\\controllers\\jobapplycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C95B4CE2-D870-4CCB-AEA1-8847964339B8}|ERecruitmentSystem02\\ERecruitmentSystem02.csproj|c:\\users\\asus\\desktop\\new folder (4)\\basicc#\\erecruitmentsystem02\\erecruitmentsystem02\\wwwroot\\css\\loginpaetial.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{C95B4CE2-D870-4CCB-AEA1-8847964339B8}|ERecruitmentSystem02\\ERecruitmentSystem02.csproj|solutionrelative:erecruitmentsystem02\\wwwroot\\css\\loginpaetial.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C95B4CE2-D870-4CCB-AEA1-8847964339B8}|ERecruitmentSystem02\\ERecruitmentSystem02.csproj|c:\\users\\asus\\desktop\\new folder (4)\\basicc#\\erecruitmentsystem02\\erecruitmentsystem02\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C95B4CE2-D870-4CCB-AEA1-8847964339B8}|ERecruitmentSystem02\\ERecruitmentSystem02.csproj|solutionrelative:erecruitmentsystem02\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C95B4CE2-D870-4CCB-AEA1-8847964339B8}|ERecruitmentSystem02\\ERecruitmentSystem02.csproj|c:\\users\\asus\\desktop\\new folder (4)\\basicc#\\erecruitmentsystem02\\erecruitmentsystem02\\wwwroot\\css\\layout.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{C95B4CE2-D870-4CCB-AEA1-8847964339B8}|ERecruitmentSystem02\\ERecruitmentSystem02.csproj|solutionrelative:erecruitmentsystem02\\wwwroot\\css\\layout.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Layout.css",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\New folder (4)\\BasicC#\\ERecruitmentSystem02\\ERecruitmentSystem02\\wwwroot\\css\\Layout.css",
+              "RelativeDocumentMoniker": "ERecruitmentSystem02\\wwwroot\\css\\Layout.css",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\New folder (4)\\BasicC#\\ERecruitmentSystem02\\ERecruitmentSystem02\\wwwroot\\css\\Layout.css",
+              "RelativeToolTip": "ERecruitmentSystem02\\wwwroot\\css\\Layout.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-05-11T17:02:06.812Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "_LoginPartial.cshtml",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\New folder (4)\\BasicC#\\ERecruitmentSystem02\\ERecruitmentSystem02\\Views\\Shared\\_LoginPartial.cshtml",
+              "RelativeDocumentMoniker": "ERecruitmentSystem02\\Views\\Shared\\_LoginPartial.cshtml",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\New folder (4)\\BasicC#\\ERecruitmentSystem02\\ERecruitmentSystem02\\Views\\Shared\\_LoginPartial.cshtml",
+              "RelativeToolTip": "ERecruitmentSystem02\\Views\\Shared\\_LoginPartial.cshtml",
+              "ViewState": "AgIAACgAAAAAAAAAAAAIwC8AAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-11T17:09:58.349Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "JobApplyController.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\New folder (4)\\BasicC#\\ERecruitmentSystem02\\ERecruitmentSystem02\\Controllers\\JobApplyController.cs",
+              "RelativeDocumentMoniker": "ERecruitmentSystem02\\Controllers\\JobApplyController.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\New folder (4)\\BasicC#\\ERecruitmentSystem02\\ERecruitmentSystem02\\Controllers\\JobApplyController.cs",
+              "RelativeToolTip": "ERecruitmentSystem02\\Controllers\\JobApplyController.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAA0wBYAAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T04:23:30.782Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\New folder (4)\\BasicC#\\ERecruitmentSystem02\\ERecruitmentSystem02\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "ERecruitmentSystem02\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\New folder (4)\\BasicC#\\ERecruitmentSystem02\\ERecruitmentSystem02\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "ERecruitmentSystem02\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-12T04:26:14.584Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "LoginPage.cshtml",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\New folder (4)\\BasicC#\\ERecruitmentSystem02\\ERecruitmentSystem02\\Views\\Account\\LoginPage.cshtml",
+              "RelativeDocumentMoniker": "ERecruitmentSystem02\\Views\\Account\\LoginPage.cshtml",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\New folder (4)\\BasicC#\\ERecruitmentSystem02\\ERecruitmentSystem02\\Views\\Account\\LoginPage.cshtml",
+              "RelativeToolTip": "ERecruitmentSystem02\\Views\\Account\\LoginPage.cshtml",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAB0AAABwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-12T04:33:40.135Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ApplyPage.cshtml",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\New folder (4)\\BasicC#\\ERecruitmentSystem02\\ERecruitmentSystem02\\Views\\JobApply\\ApplyPage.cshtml",
+              "RelativeDocumentMoniker": "ERecruitmentSystem02\\Views\\JobApply\\ApplyPage.cshtml",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\New folder (4)\\BasicC#\\ERecruitmentSystem02\\ERecruitmentSystem02\\Views\\JobApply\\ApplyPage.cshtml",
+              "RelativeToolTip": "ERecruitmentSystem02\\Views\\JobApply\\ApplyPage.cshtml",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAAAFkAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-12T04:36:05.24Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UsersBasic.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\New folder (4)\\BasicC#\\ERecruitmentSystem02\\ERecruitmentSystem02\\Models\\Domain\\UsersBasic.cs",
+              "RelativeDocumentMoniker": "ERecruitmentSystem02\\Models\\Domain\\UsersBasic.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\New folder (4)\\BasicC#\\ERecruitmentSystem02\\ERecruitmentSystem02\\Models\\Domain\\UsersBasic.cs",
+              "RelativeToolTip": "ERecruitmentSystem02\\Models\\Domain\\UsersBasic.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAkwBoAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T04:57:48.714Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\New folder (4)\\BasicC#\\ERecruitmentSystem02\\ERecruitmentSystem02\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "ERecruitmentSystem02\\Controllers\\AccountController.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\New folder (4)\\BasicC#\\ERecruitmentSystem02\\ERecruitmentSystem02\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "ERecruitmentSystem02\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAN8AAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T04:36:56.02Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\New folder (4)\\BasicC#\\ERecruitmentSystem02\\ERecruitmentSystem02\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "ERecruitmentSystem02\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\New folder (4)\\BasicC#\\ERecruitmentSystem02\\ERecruitmentSystem02\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "ERecruitmentSystem02\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAB8AAAB6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-11T17:34:29.622Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Loginpaetial.css",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\New folder (4)\\BasicC#\\ERecruitmentSystem02\\ERecruitmentSystem02\\wwwroot\\css\\Loginpaetial.css",
+              "RelativeDocumentMoniker": "ERecruitmentSystem02\\wwwroot\\css\\Loginpaetial.css",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\New folder (4)\\BasicC#\\ERecruitmentSystem02\\ERecruitmentSystem02\\wwwroot\\css\\Loginpaetial.css",
+              "RelativeToolTip": "ERecruitmentSystem02\\wwwroot\\css\\Loginpaetial.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-05-11T17:32:46.784Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

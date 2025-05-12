@@ -1,0 +1,56 @@
+﻿.grade-year-roll-col {
+    min-width: 70px;
+}
+
+.examname-division {
+    min-width: 110px;
+}
+
+.subject-board, .job-type, .language-selection {
+    min-width: 140px;
+}
+
+.external-styles {
+    font-size: 14px;
+}
+
+.in-form-area {
+    min-width: 200px;
+}
+
+.norm-fields {
+    min-width: 120px;
+}
+
+.ext-pd{
+    display:block;
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+.image-preview {
+    width: 150px;
+    height: 150px;
+    border: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+    .image-preview img {
+        width: 100%;
+        height: auto;
+    }
+
+.image-preview-containers {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0;
+}
+
+.image-preview-parent-containers {
+    padding-right: 0;
+    padding-left: 0;
+}

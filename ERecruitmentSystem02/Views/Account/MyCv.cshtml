@@ -1,0 +1,370 @@
+﻿@model ERecruitmentSystem02.Models.View.RegistrationPageViewModel
+
+<link rel="stylesheet" href="~/css/Mycv.css" />
+
+<div class="cv-container">
+
+    <div class="cv-header">
+        <div class="cv-info">
+
+            <div class="cv-top row">
+                <div class="cv-top-left col-9">
+
+                    <div class="row">
+                        <div class="col-4"><strong>Applicant Id:</strong></div>
+                        <div class="col-8">
+                            <p>@Model.UsersBasic.Id</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-4"><strong>Applied For:</strong></div>
+                        <div class="col-8" style="word-wrap: break-word; overflow-wrap: break-word;">
+                            <p>@Model.UsersBasic.AppliedPosts</p>
+                        </div>
+                    </div>
+
+
+                    
+
+                </div>
+
+                <div class="cv-photo cv-top-right col-3">
+                    @if (Model.UsersPhoto != null && Model.UsersPhoto.ImageData != null)
+                    {
+                        <img src="data:@Model.UsersPhoto.ContentType;base64,@(Convert.ToBase64String(Model.UsersPhoto.ImageData))"
+                             alt="Profile Picture" />
+                    }
+                    else
+                    {
+                        <p>No profile picture available.</p>
+                    }
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <div class="mt-2 mb-2"><strong>Career Objective:</strong></div>
+                <div class="mb-2" style="word-wrap: break-word; overflow-wrap: break-word;">
+                    <p>@Model.UsersDetails.CareerObjective</p>
+                </div>
+            </div>
+
+            
+            <!-- Basic Info -->
+            <div class="row">
+                <div class="col-9">
+                    <!-- Basic Info -->
+
+                   
+                    <h5>Personal Information</h5>
+
+                    <div class="row mb-2">
+                        <div class="col-4"><strong>Name:</strong></div>
+                        <div class="col-8">@Model.UsersBasic.Name</div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-4"><strong>Sex:</strong></div>
+                        <div class="col-8">@Model.UsersBasic.Sex</div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-4"><strong>Nationality:</strong></div>
+                        <div class="col-8">@Model.UsersBasic.Nationality</div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-4"><strong>Date of Birth:</strong></div>
+                        <div class="col-8">@Model.UsersBasic.DateOfBirth.ToShortDateString()</div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-4"><strong>Email:</strong></div>
+                        <div class="col-8">@Model.UsersBasic.Email</div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-4"><strong>Contact Mobile No:</strong></div>
+                        <div class="col-8">@Model.UsersBasic.ContactMobileNo</div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-4"><strong>National ID Card No:</strong></div>
+                        <div class="col-8">@Model.UsersBasic.NationalIdCardNo</div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-4"><strong>Marital Status:</strong></div>
+                        <div class="col-8">@Model.UsersDetails.MaritalStatus</div>
+                    </div>
+
+                    <!-- Parents Info -->
+                    <div class="row mb-2">
+                        <div class="col-4"><strong>Father's Name:</strong></div>
+                        <div class="col-8">@Model.UsersDetails.FathersName</div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-4"><strong>Mother's Name:</strong></div>
+                        <div class="col-8">@Model.UsersDetails.MothersName</div>
+                    </div>
+
+                    @if (Model.UsersDetails.Spouse != null)
+                    {
+                        <div class="row mb-2">
+                            <div class="col-4"><strong>Spouse:</strong></div>
+                            <div class="col-8">@Model.UsersDetails.Spouse</div>
+                        </div>
+                    }
+
+                    <!-- Addresses -->
+                    <div class="row mb-3 mt-3">
+                        <div class="col-4"><strong>Present Address:</strong></div>
+                        <div class="col-8">
+                            <p class="mb-0">@Model.UsersDetails.PresentAreaOrVillageOrHouseOrRoad,</p>
+                            <p class="mb-0">@Model.UsersDetails.PresentPostOffice,</p>
+                            <p class="mb-0">@Model.UsersDetails.PresentPoliceStation,</p>
+                            <p class="mb-0">@Model.UsersDetails.PresentDistrict,</p>
+                            <p class="mb-0">@Model.UsersDetails.PresentPostalCode</p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-4"><strong>Permanent Address:</strong></div>
+                        <div class="col-8">
+                            <p class="mb-0">@Model.UsersDetails.PermanentAreaOrVillageOrHouseOrRoad,</p>
+                            <p class="mb-0">@Model.UsersDetails.PermanentPostOffice,</p>
+                            <p class="mb-0">@Model.UsersDetails.PermanentPoliceStation,</p>
+                            <p class="mb-0">@Model.UsersDetails.PermanentDistrict,</p>
+                            <p class="mb-0">@Model.UsersDetails.PermanentPostalCode</p>
+                        </div>
+                    </div>
+
+                    <!-- Home District -->
+                    <div class="row mb-2">
+                        <div class="col-4"><strong>Home District:</strong></div>
+                        <div class="col-8">@Model.UsersDetails.HomeDistrict</div>
+                    </div>
+
+                </div>
+                <div class="col-3"></div>
+            </div>
+
+        </div>
+
+        
+    </div>
+
+    <hr />
+
+    <h5>Educational Qualifications</h5>
+
+    @if (Model.UsersEducationalQualifications != null && Model.UsersEducationalQualifications.Any())
+    {
+        <div class="table-responsive">
+            <table class="cv-table">
+                <thead class="text-center align-middle">
+                    <tr>
+                        <th class="examname-division" rowspan="2" scope="col">Name of Examination</th>
+                        <th class="subject-board" rowspan="2" scope="col">Group/Subject</th>
+                        <th class="examname-division" rowspan="2" scope="col">Division /<br />Class / Grade</th>
+                        <th colspan="2" scope="col">Grade</th>
+                        <th class="grade-year-roll-col" rowspan="2" scope="col">Roll No</th>
+                        <th class="subject-board" rowspan="2" scope="col">Board / University</th>
+                        <th class="grade-year-roll-col" rowspan="2" scope="col">Year of Passing [yyyy]</th>
+                    </tr>
+                    <tr>
+                        <th class="grade-year-roll-col" scope="col">GPA / CGPA</th>
+                        <th class="grade-year-roll-col" scope="col">Out Of</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var edu in Model.UsersEducationalQualifications)
+                    {
+                        <tr>
+                            <td>@edu.NameOfExamination</td>
+                            <td>@edu.GroupOrSubject</td>
+                            <td>@edu.DivisionOrClassOrGrade</td>
+                            <td>@edu.GpaOrCgpa</td>
+                            <td>@edu.GpaOutOf</td>
+                            <td>@edu.RollNo</td>
+                            <td>@edu.BoardOrUnicersity</td>
+                            <td>@edu.PassingYear</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <p>No educational qualifications listed.</p>
+    }
+
+    <hr />
+
+    <h5>Work Experience</h5>
+
+    @if (Model.UsersExperiences != null && Model.UsersExperiences.Any())
+    {
+        <div class="table-responsive">
+            <table class="cv-table">
+                <thead class="text-center align-middle">
+                    <tr>
+                        <th class="norm-fields">Designation</th>
+                        <th class="norm-fields">Name of Organization</th>
+                        <th class="job-type">Job Type</th>
+                        <th class="norm-fields wide">Responsibilities</th>
+                        <th class="datefields">Joining Date</th>
+                        <th class="datefields">Release Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var job in Model.UsersExperiences)
+                    {
+                        <tr>
+                            <td>@job.Designation</td>
+                            <td>@job.NameOfOrganization</td>
+                            <td>@job.JobType</td>
+                            <td>@job.Responsibilities</td>
+                            <td>@job.JoiningDate?.ToString("yyyy-MM-dd")</td>
+                            <td>@(job.ReleaseDate?.ToString("yyyy-MM-dd") ?? "Present")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <p>No work experience listed.</p>
+    }
+
+    <hr />
+
+    <h5>Certifications</h5>
+
+    @if (Model.UsersPersonalCertifications != null && Model.UsersPersonalCertifications.Any())
+    {
+        <div class="table-responsive">
+            <table class="cv-table">
+                <thead class="text-center align-middle">
+                    <tr>
+                        <th class="in-form-area">Certification</th>
+                        <th class="norm-fields">Name of Institution</th>
+                        <th class="norm-fields">Location</th>
+                        <th class="datefields">Joining Date</th>
+                        <th class="datefields">Release Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var cert in Model.UsersPersonalCertifications)
+                    {
+                        <tr>
+                            <td>@cert.Certification</td>
+                            <td>@cert.NameOfInstitution</td>
+                            <td>@cert.Location</td>
+                            <td>@cert.FromDate?.ToString("yyyy-MM-dd")</td>
+                            <td>@(cert.ToDate?.ToString("yyyy-MM-dd") ?? "Ongoing")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <p>No certifications listed.</p>
+    }
+
+
+    <div class="mt-4">
+        <div class="mt-2 mb-2"><strong>Computer Literacy:</strong></div>
+        <div class="mb-2" style="word-wrap: break-word; overflow-wrap: break-word;">
+            <p>@Model.UsersDetails.ComputerLiteracy</p>
+        </div>
+    </div>
+
+    <hr />
+
+    <h5>Languages Known</h5>
+
+    @if (Model.UsersLanguageproficiencies != null && Model.UsersLanguageproficiencies.Any())
+    {
+        <div class="table-responsive">
+            <table class="cv-table">
+                <thead class="text-center align-middle">
+                    <tr>
+                        <th class="norm-fields">Language Name</th>
+                        <th class="language-selection">Speaking</th>
+                        <th class="language-selection">Reading</th>
+                        <th class="language-selection">Listening</th>
+                        <th class="language-selection">Writing</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var lang in Model.UsersLanguageproficiencies)
+                    {
+                        <tr>
+                            <td>@lang.LanguageName</td>
+                            <td>@lang.Speaking</td>
+                            <td>@lang.Reading</td>
+                            <td>@lang.Listening</td>
+                            <td>@lang.Writing</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <p>No languages listed.</p>
+    }
+
+    <hr />
+
+    <h5>References</h5>
+
+    @if (Model.UsersReferences != null && Model.UsersReferences.Any())
+    {
+        <div class="table-responsive">
+            <table class="cv-table">
+                <thead class="text-center align-middle">
+                    <tr>
+                        <th class="norm-fields">Name</th>
+                        <th class="in-form-area">Address (Max 200 char)</th>
+                        <th class="norm-fields">Contact No.</th>
+                        <th class="norm-fields">Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var reference in Model.UsersReferences)
+                    {
+                        <tr>
+                            <td>@reference.Name</td>
+                            <td>@reference.Address</td>
+                            <td>@reference.ContactNo</td>
+                            <td>@reference.Email</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <p>No references provided.</p>
+    }
+
+    <div class="mb-3 mt-4">
+        <p>I hereby declear that all of my information selected avobe is accordance with the truth. If any diviation found later my application will be treated as cancelled.</p>
+    </div>
+
+    <div class="cv-photo mt-3 mb-3">
+        @if (Model.UsersSignature != null && Model.UsersSignature.ImageData != null)
+        {
+            <img src="data:@Model.UsersSignature.ContentType;base64,@(Convert.ToBase64String(Model.UsersSignature.ImageData))"
+                 alt="Profile Picture" />
+             <div>
+                 ----------------------------
+             </div>
+        }
+        else
+        {
+            <p>No profile picture available.</p>
+        }
+    </div>
+</div>

@@ -1,0 +1,25 @@
+﻿@model ERecruitmentSystem02.Models.View.RegistrationSuccess
+
+@{
+    ViewData["Title"] = "Registration Successful";
+}
+
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="card shadow p-4" style="width: 25rem;">
+        <div class="card-body text-center">
+            <h2 class="card-title text-success mb-4">Registration Successful!</h2>
+
+            <p class="card-text">
+                <strong>Name:</strong> @Model.ApplicantsName
+            </p>
+            <p class="card-text">
+                <strong>ID:</strong> @Model.ApplicantsId
+            </p>
+            <p class="card-text">
+                <strong>Age:</strong> @Model.ApplicantsAge
+            </p>
+
+            <a class="btn btn-primary me-2" asp-controller="Account" asp-action="Login">Login</a>
+        </div>
+    </div>
+</div>

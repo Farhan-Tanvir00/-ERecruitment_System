@@ -1,0 +1,21 @@
+﻿table th, table td {
+    font-size: 0.9rem;
+    vertical-align: middle;
+}
+
+table th, td {
+    text-align: center;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+@media (max-width: 30px) {
+    table, th, td {
+        padding: 2px !important;
+    }
+
+    table th, table td {
+        font-size: 0.8rem;
+    }
+}
+

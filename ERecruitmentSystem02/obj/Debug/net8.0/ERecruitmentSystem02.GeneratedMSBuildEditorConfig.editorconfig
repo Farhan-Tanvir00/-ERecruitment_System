@@ -1,0 +1,105 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = ERecruitmentSystem02
+build_property.RootNamespace = ERecruitmentSystem02
+build_property.ProjectDir = C:\Users\ASUS\Desktop\New folder (4)\BasicC#\ERecruitmentSystem02\ERecruitmentSystem02\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\ASUS\Desktop\New folder (4)\BasicC#\ERecruitmentSystem02\ERecruitmentSystem02
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 8.0
+build_property.EnableCodeStyleSeverity = 
+
+[C:/Users/ASUS/Desktop/New folder (4)/BasicC\#/ERecruitmentSystem02/ERecruitmentSystem02/Views/Account/ChangePassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxDaGFuZ2VQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ASUS/Desktop/New folder (4)/BasicC\#/ERecruitmentSystem02/ERecruitmentSystem02/Views/Account/ForgotId.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxGb3Jnb3RJZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ASUS/Desktop/New folder (4)/BasicC\#/ERecruitmentSystem02/ERecruitmentSystem02/Views/Account/ForgotPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxGb3Jnb3RQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ASUS/Desktop/New folder (4)/BasicC\#/ERecruitmentSystem02/ERecruitmentSystem02/Views/Account/LoginPage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpblBhZ2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ASUS/Desktop/New folder (4)/BasicC\#/ERecruitmentSystem02/ERecruitmentSystem02/Views/Account/MyCv.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxNeUN2LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ASUS/Desktop/New folder (4)/BasicC\#/ERecruitmentSystem02/ERecruitmentSystem02/Views/Account/RegistrationPage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3RyYXRpb25QYWdlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ASUS/Desktop/New folder (4)/BasicC\#/ERecruitmentSystem02/ERecruitmentSystem02/Views/Account/RegistrationSuccess.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3RyYXRpb25TdWNjZXNzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ASUS/Desktop/New folder (4)/BasicC\#/ERecruitmentSystem02/ERecruitmentSystem02/Views/Account/ResetPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZXNldFBhc3N3b3JkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ASUS/Desktop/New folder (4)/BasicC\#/ERecruitmentSystem02/ERecruitmentSystem02/Views/Account/RetrievediD.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZXRyaWV2ZWRpRC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ASUS/Desktop/New folder (4)/BasicC\#/ERecruitmentSystem02/ERecruitmentSystem02/Views/Account/UpdateCV.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxVcGRhdGVDVi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ASUS/Desktop/New folder (4)/BasicC\#/ERecruitmentSystem02/ERecruitmentSystem02/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ASUS/Desktop/New folder (4)/BasicC\#/ERecruitmentSystem02/ERecruitmentSystem02/Views/JobApply/ApplyPage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9iQXBwbHlcQXBwbHlQYWdlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ASUS/Desktop/New folder (4)/BasicC\#/ERecruitmentSystem02/ERecruitmentSystem02/Views/JobApply/RegisterApplyStats.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9iQXBwbHlcUmVnaXN0ZXJBcHBseVN0YXRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ASUS/Desktop/New folder (4)/BasicC\#/ERecruitmentSystem02/ERecruitmentSystem02/Views/JobApply/RegistrationAndApply.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9iQXBwbHlcUmVnaXN0cmF0aW9uQW5kQXBwbHkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ASUS/Desktop/New folder (4)/BasicC\#/ERecruitmentSystem02/ERecruitmentSystem02/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ASUS/Desktop/New folder (4)/BasicC\#/ERecruitmentSystem02/ERecruitmentSystem02/Views/Shared/_LoginPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ASUS/Desktop/New folder (4)/BasicC\#/ERecruitmentSystem02/ERecruitmentSystem02/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ASUS/Desktop/New folder (4)/BasicC\#/ERecruitmentSystem02/ERecruitmentSystem02/Views/UsersDetails/AllUsers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNEZXRhaWxzXEFsbFVzZXJzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ASUS/Desktop/New folder (4)/BasicC\#/ERecruitmentSystem02/ERecruitmentSystem02/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ASUS/Desktop/New folder (4)/BasicC\#/ERecruitmentSystem02/ERecruitmentSystem02/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ASUS/Desktop/New folder (4)/BasicC\#/ERecruitmentSystem02/ERecruitmentSystem02/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-6v738e8ecv

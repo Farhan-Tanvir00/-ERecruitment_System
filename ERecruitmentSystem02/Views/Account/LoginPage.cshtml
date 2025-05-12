@@ -1,0 +1,41 @@
+﻿@model ERecruitmentSystem02.Models.View.LoginInfo
+
+@if (Model != null && Model.BaseResponse != null && Model.BaseResponse.Status != null)
+{
+    @if (Model.BaseResponse.Status != "SUCCESS")
+    {
+        <div class="alert alert-danger">
+            @Model.BaseResponse.Message
+        </div>
+    }
+}
+
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card p-4 shadow-sm" style="width: 100%; max-width: 400px;">
+        <h4 class="text-center mb-4">Login</h4>
+        <form asp-action="Login" method="post">
+            <div class="mb-3">
+                <label asp-for="IdNumber" class="col-form-label-sm"></label>
+                <input asp-for="IdNumber" type="text" class="form-control form-control-sm" required />
+                <span asp-validation-for = "IdNumber"  class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Password" class="col-form-label-sm"></label>
+                <input asp-for="Password" class="form-control form-control-sm" type="password" required />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <div class="row mt-3 mb-3">
+                <div class="col-md-6">
+                    <a class="text-secondary text-decoration-none" asp-controller="Account" asp-action="ForgotId">Forgot Id</a>
+                </div>
+                <div class="col-md-6 text-end">
+                    <a class="text-secondary text-decoration-none ms-6" asp-area="" asp-controller="Account" asp-action="ForgotPassword">Forgot Password</a>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Login</button>
+        </form>
+
+    </div>
+</div>

@@ -1,0 +1,46 @@
+﻿@model ERecruitmentSystem02.Models.View.RegisterAndApplyStats
+
+@{
+    ViewData["Title"] = "Registration ans apply Status";
+}
+
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="card shadow p-4" style="width: 25rem;">
+        <div class="card-body text-center">
+            <h2 class="card-title text-success mb-4">Registration Successful!</h2>
+
+            <p class="card-text">
+                <strong>Name:</strong> @Model.RegistrationSuccess.ApplicantsName
+            </p>
+            <p class="card-text">
+                <strong>ID:</strong> @Model.RegistrationSuccess.ApplicantsId
+            </p>
+            <p class="card-text">
+                <strong>Age:</strong> @Model.RegistrationSuccess.ApplicantsAge
+            </p>
+
+            @if (Model != null && Model.JobApply.BaseResponse != null && Model.JobApply.BaseResponse.Status != null)
+            {
+
+                @if (Model.JobApply.BaseResponse.Status == "SUCCESS")
+                {
+                    <h2 class="card-title text-success mb-4">Apply Successful!</h2>
+
+                    <p class="card-text">
+                        <strong>JobID:</strong> @Model.JobApply.JobId
+                    </p>
+                }
+                else
+                {
+                    <h2 class="card-title text-danger mb-4">Apply Failed !</h2>
+                    <h3 class="card-title text-danger mb-4">@Model.JobApply.BaseResponse.Message</h3>
+                }
+            }
+
+            <a class="btn btn-primary me-2" asp-controller="Account" asp-action="Login">Login</a>
+        </div>
+    </div>
+</div>
+
+
+

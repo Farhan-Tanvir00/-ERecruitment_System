@@ -1,0 +1,38 @@
+﻿@using ERecruitmentSystem02.Models.Domain
+@model List<UsersBasic>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Sex</th>
+            <th>DateOfBirth</th>
+            <th>Nationality</th>
+            <th>Email</th>
+            <th>NationalIdCardNo</th>
+            <th>ContactMobileNo</th>
+            <th>More</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var usr in Model)
+        {
+            <tr>
+                <td>@usr.Id</td>
+                <td>@usr.Name</td>
+                <td>@usr.Sex</td>
+                <td>@usr.DateOfBirth</td>
+                <td>@usr.Nationality</td>
+                <td>@usr.Email</td>
+                <td>@usr.NationalIdCardNo</td>
+                <td>@usr.ContactMobileNo</td>
+                <td>
+                    <a class="btn btn-primary asp-controller=" UserBasic" asp-action="Details" asp-route-id="@usr.Id">
+                        Details
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

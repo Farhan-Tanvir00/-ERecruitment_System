@@ -1,0 +1,1281 @@
+create or replace PROCEDURE ADD_A_TESTEMP(
+                V_FIRST_NAME IN TESTEMP.FIRSTNAME%TYPE,
+                V_LAST_NAME IN TESTEMP.FIRSTNAME%TYPE,
+                V_EMAIL IN TESTEMP.EMAIL%TYPE
+)IS
+
+BEGIN
+    INSERT INTO TESTEMP( FIRSTNAME, LASTNAME, EMAIL )
+    VALUES (V_FIRST_NAME, V_LAST_NAME, V_EMAIL);
+END;
+
+create or replace PROCEDURE add_job_history
+  (  p_emp_id          job_history.employee_id%type
+   , p_start_date      job_history.start_date%type
+   , p_end_date        job_history.end_date%type
+   , p_job_id          job_history.job_id%type
+   , p_department_id   job_history.department_id%type
+   )
+IS
+BEGIN
+  INSERT INTO job_history (employee_id, start_date, end_date,
+                           job_id, department_id)
+    VALUES(p_emp_id, p_start_date, p_end_date, p_job_id, p_department_id);
+END add_job_history;
+
+
+create or replace PROCEDURE CHANGE_APPLICANTS_PASSWORD(
+
+    v_Status        OUT VARCHAR2,
+    v_Message       OUT VARCHAR2,
+    v_Err_Details   OUT VARCHAR2,
+    
+    v_Id            IN "UsersBasic"."Id"%TYPE,
+    v_password      IN "UsersBasic"."Password"%TYPE,
+    v_NewPassword   IN "UsersBasic"."Password"%TYPE
+)IS
+    v_Count NUMBER;
+BEGIN
+    
+    SELECT COUNT(*)INTO v_Count FROM "UsersBasic" 
+    WHERE "Id" = v_Id AND "Password" = v_password;
+    
+    IF v_Count = 1 THEN
+        UPDATE "UsersBasic" set "Password" = v_NewPassword 
+        WHERE "Id" = v_Id;
+        
+        v_Status := 'SUCCESS';                 
+        v_Message := 'Password Changed';              
+        v_Err_Details := '';
+        
+    ELSE
+        v_Status := 'FAILED';                 
+        v_Message := 'Password Cannot be Changed'; 
+        v_Err_Details := 'ID or Password not Matched';               
+    END IF;
+    
+EXCEPTION
+    WHEN OTHERS THEN
+        v_Status := 'FAILED';
+        v_Message := 'An error occurred';
+        v_Err_Details := SQLERRM;
+END;
+
+
+
+create or replace procedure cw(v_text in varchar2) as
+begin
+dbms_output.put_line(v_text);
+end;
+
+
+
+create or replace PROCEDURE DELETE_USER_EDU_QUALIFICATIONS(
+    v_UserId IN NUMBER
+)
+IS
+BEGIN
+    DELETE FROM "UsersEducationalQualifications"
+    WHERE "UserId" = v_UserId;
+END;
+
+
+create or replace PROCEDURE GET_A_JOBS_DETAILS(
+    P_Id                    IN "AvailableJobs"."JobID"%TYPE,
+    
+    O_STATUS             OUT VARCHAR2,
+    O_MESSAGE            OUT VARCHAR2,
+    O_ERR_DETAILS        OUT VARCHAR2,
+    
+    O_Position           OUT "AvailableJobs"."Position"%TYPE,
+    O_NumberOfPosts      OUT "AvailableJobs"."NumberOfPosts"%TYPE,
+    O_Salary             OUT "AvailableJobs"."Salary"%TYPE,
+    O_Details            OUT "AvailableJobs"."Details"%TYPE,
+    O_EduReqDetails      OUT "AvailableJobs"."EduReqDetails"%TYPE,
+    O_publishedBy        OUT "AvailableJobs"."publishedBy"%TYPE, 
+    O_MaxAge             OUT "AvailableJobs"."MaxAge"%TYPE,
+    O_Graduation         OUT "AvailableJobs"."Graduation"%TYPE,
+    O_PostGraduation     OUT "AvailableJobs"."PostGraduation"%TYPE,
+    O_Deadline           OUT "AvailableJobs"."Deadline"%TYPE
+)IS
+    E_ERROR         EXCEPTION;
+BEGIN
+
+    BEGIN
+        SELECT "Position", "NumberOfPosts", "Salary", "Details", "EduReqDetails",
+        "publishedBy", "MaxAge", "Graduation", "PostGraduation", "Deadline" INTO 
+        O_Position, O_NumberOfPosts, O_Salary, O_Details, O_EduReqDetails, O_publishedBy,
+        O_MaxAge, O_Graduation, O_PostGraduation, O_Deadline FROM "AvailableJobs"
+        WHERE "JobID" = P_Id;
+
+        O_STATUS         := 'SUCCESS';
+        O_MESSAGE        := 'DATA FOUND';
+        O_ERR_DETAILS    := '';
+
+    EXCEPTION
+         WHEN NO_DATA_FOUND THEN
+
+            O_STATUS         := 'FAILED';
+            O_MESSAGE        := 'NO DATA FOUND';
+            O_ERR_DETAILS    := '';
+            RETURN;
+
+        WHEN OTHERS THEN
+            O_STATUS := 'FAILED';
+            O_MESSAGE := 'Invalid operation ' || sqlerrm ;
+            O_ERR_DETAILS := O_STATUS || ': ' || O_MESSAGE;
+            RAISE E_ERROR;
+    END;
+
+EXCEPTION
+     WHEN E_ERROR THEN
+
+        RETURN;
+
+    WHEN OTHERS THEN 
+
+        O_STATUS := 'FAILED';
+        O_MESSAGE := 'Invalid operation';
+        O_ERR_DETAILS := O_STATUS || ': ' || SQLERRM;
+
+END;
+
+
+create or replace PROCEDURE GET_A_JOBS_REQUIREMENTS(
+
+    P_Id                IN "AvailableJobs"."JobID"%TYPE,
+    
+    O_STATUS             OUT VARCHAR2,
+    O_MESSAGE            OUT VARCHAR2,
+    O_ERR_DETAILS        OUT VARCHAR2,
+    
+    O_MaxAge             OUT "AvailableJobs"."MaxAge"%TYPE,
+    O_Graduation         OUT "AvailableJobs"."Graduation"%TYPE,
+    O_PostGraduation     OUT "AvailableJobs"."PostGraduation"%TYPE,
+    O_Deadline           OUT "AvailableJobs"."Deadline"%TYPE
+
+)IS
+    E_ERROR            EXCEPTION;
+BEGIN
+
+    BEGIN
+
+        SELECT "MaxAge", "Graduation", "PostGraduation", "Deadline" INTO 
+        O_MaxAge, O_Graduation, O_PostGraduation, O_Deadline FROM "AvailableJobs"
+        WHERE "JobID" = P_Id;
+
+            O_STATUS         := 'SUCCESS';
+            O_MESSAGE        := 'DATA FOUND';
+            O_ERR_DETAILS    := '';
+
+    EXCEPTION
+
+        WHEN NO_DATA_FOUND THEN
+
+            O_STATUS         := 'FAILED';
+            O_MESSAGE        := 'NO DATA FOUND';
+            O_ERR_DETAILS    := '';
+            RETURN;
+
+        WHEN OTHERS THEN
+
+                O_STATUS := 'FAILED';
+                O_MESSAGE := 'Invalid operation';
+                O_ERR_DETAILS := O_STATUS || ': ' || O_MESSAGE;
+                RAISE E_ERROR;
+    END;
+
+EXCEPTION
+
+    WHEN E_ERROR THEN
+
+        RETURN;
+
+    WHEN OTHERS THEN 
+
+        O_STATUS := 'FAILED';
+        O_MESSAGE := 'Invalid operation';
+        O_ERR_DETAILS := O_STATUS || ': ' || O_MESSAGE;
+
+END;
+
+
+create or replace PROCEDURE GET_A_USERS_BASIC(
+
+    v_Id                 IN "UsersBasic"."Id"%TYPE,
+    
+    O_STATUS             OUT VARCHAR2,
+    O_MESSAGE            OUT VARCHAR2,
+    O_ERR_DETAILS        OUT VARCHAR2,
+    
+    v_Name               OUT "UsersBasic"."Name"%TYPE,
+    v_Sex                OUT "UsersBasic"."Sex"%TYPE,
+    v_DateOfBirth        OUT "UsersBasic"."DateOfBirth"%TYPE,
+    v_Nationality        OUT"UsersBasic"."Nationality"%TYPE,
+    v_Email              OUT"UsersBasic"."Email"%TYPE,
+    v_NationalIdCardNo   OUT"UsersBasic"."NationalIdCardNo"%TYPE,
+    v_ContactMobileNo    OUT"UsersBasic"."ContactMobileNo"%TYPE
+    
+)IS
+     E_ERROR       EXCEPTION;
+BEGIN
+
+    BEGIN
+    
+        SELECT "Name", "Sex", "DateOfBirth", "Nationality", "Email", "NationalIdCardNo", "ContactMobileNo" 
+        INTO v_Name, v_Sex, v_DateOfBirth, v_Nationality, v_Email, v_NationalIdCardNo, v_ContactMobileNo  
+        FROM "UsersBasic" WHERE "Id" = v_Id;
+        
+        O_STATUS         := 'SUCCESS';
+        O_MESSAGE        := 'DATA FOUND';
+        O_ERR_DETAILS    := '';
+        
+    EXCEPTION
+    
+        WHEN NO_DATA_FOUND THEN
+            O_STATUS         := 'FAILED';
+            O_MESSAGE        := 'NO DATA FOUND';
+            O_ERR_DETAILS    := '';
+            RETURN;
+        
+        WHEN OTHERS THEN
+            O_STATUS := 'FAILED';
+            O_MESSAGE := 'Invalid operation';
+            O_ERR_DETAILS := O_STATUS || ': ' || O_MESSAGE;
+            RAISE E_ERROR;
+    END;
+    
+
+    EXCEPTION
+    
+        WHEN E_ERROR THEN
+        RETURN;
+
+    WHEN OTHERS THEN 
+
+        O_STATUS := 'FAILED';
+        O_MESSAGE := 'Invalid operation';
+        O_ERR_DETAILS := O_STATUS || ': ' || SQLERRM;
+
+END;
+
+create or replace PROCEDURE GET_A_USERS_DETAILS (
+
+    v_Id            IN  NUMBER,
+    
+    O_STATUS             OUT VARCHAR2,
+    O_MESSAGE            OUT VARCHAR2,
+    O_ERR_DETAILS        OUT VARCHAR2,
+    
+    v_PresentArea              OUT "UsersDetails"."PresentAreaOrVillageOrHouseOrRoad"%TYPE,
+    v_PresentPostOffice        OUT "UsersDetails"."PresentPostOffice"%TYPE,
+    v_PresentPoliceStation     OUT "UsersDetails"."PresentPoliceStation"%TYPE,
+    v_PresentPostalCode        OUT "UsersDetails"."PresentPostalCode"%TYPE,
+    v_PresentDistrict          OUT "UsersDetails"."PresentDistrict"%TYPE,
+    v_PermanentArea            OUT "UsersDetails"."PermanentAreaOrVillageOrHouseOrRoad"%TYPE,
+    v_PermanentPostOffice      OUT "UsersDetails"."PermanentPostOffice"%TYPE,
+    v_PermanentPoliceStation   OUT "UsersDetails"."PermanentPoliceStation"%TYPE,
+    v_PermanentPostalCode      OUT "UsersDetails"."PermanentPostalCode"%TYPE,
+    v_PermanentDistrict        OUT "UsersDetails"."PermanentDistrict"%TYPE,
+    v_HomeDistrict             OUT "UsersDetails"."HomeDistrict"%TYPE,
+    v_CareerObjective          OUT "UsersDetails"."CareerObjective"%TYPE,
+    v_MaritalStatus            OUT "UsersDetails"."MaritalStatus"%TYPE,
+    v_Religion                 OUT "UsersDetails"."Religion"%TYPE,
+    v_FathersName              OUT "UsersDetails"."FathersName"%TYPE,
+    v_MothersName              OUT "UsersDetails"."MothersName"%TYPE,
+    v_Spouse                   OUT "UsersDetails"."Spouse"%TYPE,
+    v_HasExperience            OUT "UsersDetails"."HasExperience"%TYPE,
+    v_ComputerLiteracy         OUT "UsersDetails"."ComputerLiteracy"%TYPE
+)
+IS
+     E_ERROR       EXCEPTION;
+BEGIN
+    
+    BEGIN
+        
+        SELECT  
+        "PresentAreaOrVillageOrHouseOrRoad", 
+        "PresentPostOffice", 
+        "PresentPoliceStation", 
+        "PresentPostalCode",
+        "PresentDistrict", 
+        "PermanentAreaOrVillageOrHouseOrRoad", 
+        "PermanentPostOffice", 
+        "PermanentPoliceStation", 
+        "PermanentPostalCode",
+        "PermanentDistrict", 
+        "HomeDistrict", 
+        "CareerObjective", 
+        "MaritalStatus", 
+        "Religion", 
+        "FathersName", 
+        "MothersName", 
+        "Spouse",
+        "HasExperience", 
+        "ComputerLiteracy" 
+    INTO 
+        v_PresentArea, v_PresentPostOffice, v_PresentPoliceStation, 
+        v_PresentPostalCode, v_PresentDistrict, v_PermanentArea, v_PermanentPostOffice, v_PermanentPoliceStation,
+        v_PermanentPostalCode, v_PermanentDistrict, v_HomeDistrict, v_CareerObjective, v_MaritalStatus, v_Religion,
+        v_FathersName, v_MothersName, v_Spouse, v_HasExperience, v_ComputerLiteracy
+    FROM 
+        "UsersDetails" 
+    WHERE 
+        "UserId" = v_Id;
+        
+        O_STATUS         := 'SUCCESS';
+        O_MESSAGE        := 'DATA FOUND';
+        O_ERR_DETAILS    := '';
+    
+    EXCEPTION
+    
+        WHEN NO_DATA_FOUND THEN
+            O_STATUS         := 'FAILED';
+            O_MESSAGE        := 'NO DATA FOUND';
+            O_ERR_DETAILS    := '';
+            RETURN;
+        
+        WHEN OTHERS THEN
+            O_STATUS := 'FAILED';
+            O_MESSAGE := 'Invalid operation';
+            O_ERR_DETAILS := O_STATUS || ': ' || O_MESSAGE;
+            RAISE E_ERROR;  
+    END;
+
+EXCEPTION
+     WHEN E_ERROR THEN
+        RETURN;
+
+    WHEN OTHERS THEN 
+
+        O_STATUS := 'FAILED';
+        O_MESSAGE := 'Invalid operation';
+        O_ERR_DETAILS := O_STATUS || ': ' || SQLERRM;
+END;
+
+create or replace PROCEDURE GET_A_USERS_EDUCATIONAL_QUALIFICATION(
+    v_Id IN NUMBER,
+    p_cursor out SYS_REFCURSOR
+)
+IS
+
+--    v_ExamId                    "UsersEducationalQualifications"."ExamId"%TYPE;
+--    v_NameOfExamination         "UsersEducationalQualifications"."NameOfExamination"%TYPE;
+--    v_GroupOrSubject            "UsersEducationalQualifications"."GroupOrSubject"%TYPE;
+--    v_DivisionOrClassOrGrade    "UsersEducationalQualifications"."DivisionOrClassOrGrade"%TYPE;
+--    v_GpaOrCgpa                 "UsersEducationalQualifications"."GpaOrCgpa"%TYPE;
+--    v_GpaOutOf                  "UsersEducationalQualifications"."GpaOutOf"%TYPE;
+--    v_RollNo                    "UsersEducationalQualifications"."RollNo"%TYPE;
+--    v_BoardOrUnicersity         "UsersEducationalQualifications"."BoardOrUnicersity"%TYPE;
+--    v_PassingYear               "UsersEducationalQualifications"."PassingYear"%TYPE;
+--    v_UserId                    "UsersEducationalQualifications"."UserId"%TYPE;
+--
+--    v_found BOOLEAN := FALSE;
+
+
+BEGIN
+    OPEN p_cursor FOR
+    SELECT "NameOfExamination", "GroupOrSubject", "DivisionOrClassOrGrade", "GpaOrCgpa",
+    "GpaOutOf", "RollNo", "BoardOrUnicersity", "PassingYear" 
+    FROM "UsersEducationalQualifications" WHERE "UserId" = v_Id;
+END;
+
+
+create or replace PROCEDURE GET_A_USERS_EXPERIENCES(
+            v_Id IN NUMBER,
+            p_cursor OUT SYS_REFCURSOR
+)
+IS    
+--    v_Id                    "UsersExperiences"."Id"%TYPE;
+--    v_Designation           "UsersExperiences"."Designation"%TYPE;
+--    v_NameOfOrganization    "UsersExperiences"."NameOfOrganization"%TYPE;
+--    v_JobType               "UsersExperiences"."JobType"%TYPE;
+--    v_Responsibilities      "UsersExperiences"."Responsibilities"%TYPE;
+--    v_JoiningDate           "UsersExperiences"."JoiningDate"%TYPE;
+--    v_ReleaseDate           "UsersExperiences"."ReleaseDate"%TYPE;
+--    v_UserId                "UsersExperiences"."UserId"%TYPE;
+--
+--    v_found BOOLEAN := FALSE;
+
+
+BEGIN
+   OPEN p_cursor FOR
+   SELECT "Designation", "NameOfOrganization", "JobType", "Responsibilities", "JoiningDate", "ReleaseDate",
+   "Continuing" FROM "UsersExperiences" WHERE "UserId" = v_Id;
+END;
+
+
+
+
+create or replace PROCEDURE GET_A_USERS_LANGUAGE_PROFICIENCIES(
+                v_Id IN NUMBER,
+                p_cursor OUT SYS_REFCURSOR
+)
+IS 
+--    v_Id                "UsersLanguageproficiencies"."Id"%TYPE;
+--    v_LanguageName      "UsersLanguageproficiencies"."LanguageName"%TYPE;
+--    v_Speaking          "UsersLanguageproficiencies"."Speaking"%TYPE;
+--    v_Reading           "UsersLanguageproficiencies"."Reading"%TYPE;
+--    v_Listening         "UsersLanguageproficiencies"."Listening"%TYPE;
+--    v_Writing           "UsersLanguageproficiencies"."Writing"%TYPE;
+--    v_UserId            "UsersLanguageproficiencies"."UserId"%TYPE;
+--
+--    v_found BOOLEAN := FALSE;
+    
+BEGIN
+   OPEN p_cursor FOR
+   SELECT "LanguageName", "Speaking", "Reading", "Listening", "Writing"
+   FROM "UsersLanguageproficiencies" WHERE "UserId" = v_Id;
+END;
+
+create or replace PROCEDURE GET_A_USERS_PERSONAL_CERTIFICATIONS(
+                v_Id IN NUMBER,
+                p_cursor OUT SYS_REFCURSOR
+)
+IS
+--    v_Id                "UsersPersonalCertifications"."Id"%TYPE;
+--    v_Certification     "UsersPersonalCertifications"."Certification"%TYPE;
+--    v_NameOfInstitution "UsersPersonalCertifications"."NameOfInstitution"%TYPE;
+--    v_Location          "UsersPersonalCertifications"."Location"%TYPE;
+--    v_FromDate          "UsersPersonalCertifications"."FromDate"%TYPE;
+--    v_ToDate            "UsersPersonalCertifications"."ToDate"%TYPE;
+--    v_UserId            "UsersPersonalCertifications"."UserId"%TYPE;
+--
+--    v_found BOOLEAN := FALSE;
+
+BEGIN
+   OPEN p_cursor FOR
+   SELECT "Certification", "NameOfInstitution", "Location", "FromDate", "ToDate"
+   FROM "UsersPersonalCertifications" WHERE "UserId" = v_Id;
+END;
+
+create or replace PROCEDURE GET_A_USERS_PHOTO(
+
+        v_Id       IN NUMBER,
+        
+        v_Status        OUT VARCHAR2,
+        v_Message       OUT VARCHAR2,
+        v_Err_Details   OUT VARCHAR2,
+
+        v_ImageData     OUT "UsersPhotos"."ImageData"%TYPE,
+        v_FileName      OUT "UsersPhotos"."FileName"%TYPE,
+        v_ContentType   OUT "UsersPhotos"."ContentType"%TYPE
+)IS
+BEGIN
+    SELECT
+        "ImageData",
+        "FileName",
+        "ContentType"
+    INTO
+        v_ImageData, v_FileName, v_ContentType
+    FROM
+        "UsersPhotos"
+    WHERE
+        "UserId" = v_Id;
+
+        v_Status := 'SUCCESS';
+        v_Message := 'Data Found';
+        v_Err_Details := '';
+
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+
+        v_Status := 'FAILED';
+        v_Message := 'No Data Found';
+        v_Err_Details := 'No Data Found';  
+
+END;
+
+
+create or replace PROCEDURE GET_A_USERS_REFERENCES(
+    v_Id       IN NUMBER,
+    p_cursor        OUT SYS_REFCURSOR
+)IS
+BEGIN
+    OPEN p_cursor FOR
+    SELECT "Name", "Address", "ContactNo", "Email" FROM "UsersReferences"
+    WHERE "UserId" = v_Id;
+END;
+
+
+create or replace PROCEDURE GET_A_USERS_SIGNATURE(
+
+        v_Id       IN NUMBER,
+        v_Status        OUT VARCHAR2,
+        v_Message       OUT VARCHAR2,
+        v_Err_Details   OUT VARCHAR2,
+        
+        v_ImageData     OUT "UsersSignatures"."ImageData"%TYPE,
+        v_FileName      OUT "UsersSignatures"."FileName"%TYPE,
+        v_ContentType   OUT "UsersSignatures"."ContentType"%TYPE
+)IS
+BEGIN
+    SELECT
+
+        "ImageData",
+        "FileName",
+        "ContentType"
+
+    INTO
+        v_ImageData, v_FileName, v_ContentType
+    FROM
+        "UsersSignatures"
+    WHERE
+        "UserId" = v_Id;
+
+        v_Status := 'SUCCESS';
+        v_Message := 'Data Found';
+        v_Err_Details := '';
+
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+
+        v_Status := 'FAILED';
+        v_Message := 'No Data Found';
+        v_Err_Details := 'No Data Found On';
+
+END;
+
+
+create or replace PROCEDURE GET_ALL_AVAILABLE_JOBS(
+    
+    p_cursor                   OUT SYS_REFCURSOR
+    
+    
+)IS
+BEGIN
+    OPEN p_cursor FOR
+    SELECT "JobID", "Position", "NumberOfPosts", "Salary", "Graduation", "PostGraduation", "Deadline",
+    "Details", "EduReqDetails", "publishedBy" FROM "AvailableJobs";
+END;
+
+
+create or replace PROCEDURE GET_ALL_USERS_BASIC(p_cursor out SYS_REFCURSOR)
+IS
+--    v_Id                 "UsersBasic"."Id"%TYPE;
+--    v_Name               "UsersBasic"."Name"%TYPE;
+--    v_Sex                "UsersBasic"."Sex"%TYPE;
+--    v_DateOfBirth        "UsersBasic"."DateOfBirth"%TYPE;
+--    v_Nationality        "UsersBasic"."Nationality"%TYPE;
+--    v_Email              "UsersBasic"."Email"%TYPE;
+--    v_NationalIdCardNo   "UsersBasic"."NationalIdCardNo"%TYPE;
+--    v_ContactMobileNo    "UsersBasic"."ContactMobileNo"%TYPE;
+--    v_Password           "UsersBasic"."Password"%TYPE;
+    
+BEGIN
+    OPEN p_cursor FOR
+    SELECT "Id", "Name", "Sex", "DateOfBirth", "Nationality",
+    "Email", "NationalIdCardNo", "ContactMobileNo" FROM "UsersBasic";
+END;
+
+
+create or replace PROCEDURE GET_APPLICANTS_APPLICATIONS(
+     v_Id               IN NUMBER,
+     v_Applications     OUT VARCHAR2
+)
+IS
+    all_posts    SYS.ODCINUMBERLIST;
+    post    VARCHAR2(2000);
+BEGIN
+    SELECT "JobID" BULK COLLECT INTO all_posts FROM "AllApplications" WHERE "ApplicantID" = v_Id;
+
+    IF all_posts.COUNT = 0 THEN
+        v_Applications := 'NOT APPLIED FOR ANY POSTS YET';
+        RETURN;
+    END IF;
+
+    FOR I IN 1..all_posts.COUNT LOOP
+        SELECT "Position" INTO post FROM "AvailableJobs" WHERE "JobID" = all_posts(I);
+        IF v_Applications IS NULL THEN
+            v_Applications := post;
+        ELSE
+            v_Applications := v_Applications || ', ' || post;
+        END IF;
+    END LOOP;
+END;
+
+create or replace PROCEDURE GET_APPLICANTS_EDUQUALIFICATIONS(
+    
+    p_cursor OUT SYS_REFCURSOR,
+    v_Id     IN "UsersEducationalQualifications"."UserId"%TYPE
+)IS
+BEGIN
+    BEGIN
+
+        OPEN p_cursor FOR
+        SELECT "NameOfExamination", "GroupOrSubject", "DivisionOrClassOrGrade", "GpaOrCgpa",
+        "GpaOutOf", "BoardOrUnicersity", "PassingYear" FROM "UsersEducationalQualifications"
+        WHERE "UserId" = v_Id;
+     
+    END;
+END;
+
+
+create or replace PROCEDURE GET_P_HASHED(
+        v_id            IN "UsersBasic"."Id"%TYPE,
+        v_password      OUT "UsersBasic"."Password"%TYPE,
+        
+        v_Status                   OUT VARCHAR2,
+        v_Message                  OUT VARCHAR2,
+        v_Err_Details              OUT VARCHAR2
+)IS
+BEGIN
+    SELECT "Password" INTO v_password FROM "UsersBasic"
+    WHERE "Id" = v_id;
+
+    v_Status := '200';                 
+    v_Message := 'Applicant Found';              
+    v_Err_Details := '';
+
+    EXCEPTION 
+    WHEN NO_DATA_FOUND THEN
+
+    v_Status := '-1';                 
+    v_Message := 'No Applicant Found';              
+    v_Err_Details := 'ID or Password not Matched';
+
+END;
+
+
+
+create or replace PROCEDURE GET_REGISTERED_ID(
+    v_Status        OUT VARCHAR2,
+    v_Message       OUT VARCHAR2,
+    v_Err_Details   OUT VARCHAR2,
+    v_Id            OUT "UsersBasic"."Id"%TYPE,
+    
+    v_Name              IN  "UsersBasic"."Name"%TYPE,
+    v_DateOfBirth       IN  "UsersBasic"."DateOfBirth"%TYPE,
+    v_ContactMobileNo   IN  "UsersBasic"."ContactMobileNo"%TYPE
+
+)IS
+   
+BEGIN
+    SELECT "Id" INTO v_Id FROM "UsersBasic" WHERE
+    v_Name = "Name" AND v_DateOfBirth = "DateOfBirth" AND v_ContactMobileNo = "ContactMobileNo";
+
+    v_Status := 'SUCCESS';
+    v_Message := 'USER FOUND';
+    v_Err_Details := '';
+
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        v_Status := 'FAILED';
+        v_Message := 'NO USER FOUND WITH GIVEN INFO';
+        v_Err_Details := '';
+        v_Id := -1;
+    WHEN OTHERS THEN
+        v_Status := 'FAILED';
+        v_Message := 'NO USER FOUND WITH GIVEN INFO';
+        v_Err_Details := SQLERRM;
+        v_Id := -1;
+
+END;
+
+create or replace procedure inc_slry(v_slry_inc in out number, v_dpt_id in number, v_afctd out number) as
+cursor c_emp is select * from employees_copy where department_id = v_dpt_id for update;
+
+v_old_slry number;
+v_total number;
+
+begin
+v_afctd := 0;
+v_total := 0;
+
+for r_emp in c_emp loop
+
+v_old_slry := r_emp.salary;
+r_emp.salary  := r_emp.salary * v_slry_inc;
+v_total := v_total + (r_emp.salary  - v_old_slry);
+update employees_copy set row = r_emp where current of c_emp;
+dbms_output.put_line('updated ' || v_old_slry || ' to ' || r_emp.salary);
+v_afctd := v_afctd + 1;
+end loop;
+
+v_slry_inc := v_total;
+
+end;
+
+
+create or replace PROCEDURE INSERT_QUALIFIED_APPLICANTS(
+
+    O_STATUS             OUT VARCHAR2,
+    O_MESSAGE            OUT VARCHAR2,
+    O_ERR_DETAILS        OUT VARCHAR2,
+    
+    P_JobID              IN "AllApplications"."JobID"%TYPE,
+    P_ApplicantID        IN "AllApplications"."ApplicantID"%TYPE,
+    P_ApplyDate          IN "AllApplications"."ApplyDate"%TYPE
+    
+)IS
+    E_ERROR            EXCEPTION;
+BEGIN
+
+    BEGIN
+        INSERT INTO "AllApplications" ("JobID", "ApplicantID", "ApplyDate")
+        VALUES (P_JobID, P_ApplicantID, P_ApplyDate);
+        
+        O_STATUS         := 'SUCCESS';
+        O_MESSAGE        := 'INSERTED SUCCESSFULLY';
+        O_ERR_DETAILS    := '';
+        
+        EXCEPTION
+            WHEN OTHERS THEN
+                O_STATUS := 'FAILED';
+                O_MESSAGE := 'Invalid operation';
+                O_ERR_DETAILS := O_STATUS || ': ' || O_MESSAGE;
+                RAISE E_ERROR;
+    END;
+
+EXCEPTION
+    WHEN E_ERROR THEN
+        ROLLBACK;
+
+    WHEN OTHERS THEN
+
+        ROLLBACK;
+
+        O_STATUS := 'FAILED';
+        O_MESSAGE := 'Invalid operation';
+        O_ERR_DETAILS := O_STATUS || ': ' || O_MESSAGE;
+
+END;
+
+
+create or replace PROCEDURE secure_dml
+IS
+BEGIN
+  IF TO_CHAR (SYSDATE, 'HH24:MI') NOT BETWEEN '08:00' AND '18:00'
+        OR TO_CHAR (SYSDATE, 'DY') IN ('SAT', 'SUN') THEN
+	RAISE_APPLICATION_ERROR (-20205,
+		'You may only make changes during normal office hours');
+  END IF;
+END secure_dml;
+
+
+
+create or replace PROCEDURE SET_APPLICANTS_BASIC(
+
+    v_Id            OUT "UsersBasic"."Id"%TYPE,
+    v_Status        OUT VARCHAR2,
+    v_Message       OUT VARCHAR2,
+    v_Err_Details   OUT VARCHAR2,
+    
+    v_Name              IN  "UsersBasic"."Name"%TYPE,
+    v_Sex               IN  "UsersBasic"."Sex"%TYPE,
+    v_DateOfBirth       IN  "UsersBasic"."DateOfBirth"%TYPE,
+    v_Nationality       IN  "UsersBasic"."Nationality"%TYPE,
+    v_Email             IN  "UsersBasic"."Email"%TYPE,
+    v_NationalIdCardNo  IN  "UsersBasic"."NationalIdCardNo"%TYPE,
+    v_ContactMobileNo   IN  "UsersBasic"."ContactMobileNo"%TYPE,
+    v_Password          IN  "UsersBasic"."Password"%TYPE
+) IS
+
+v_Count NUMBER;
+BEGIN
+    
+    --CHECH EMAIL DUPLICATION
+    SELECT COUNT(*) INTO v_count FROM "UsersBasic"
+    WHERE "Email" = v_Email;
+    
+    IF v_Count > 0 THEN
+        v_Status := 'FAILED';
+        v_Message := 'Email already exists';
+        v_Err_Details := 'Duplicate Email: ' || v_Email;
+        RETURN;
+    END IF;
+    
+    
+     --CHECK NATIONAL ID DUPLICATION
+    SELECT COUNT(*) INTO v_count FROM "UsersBasic"
+    WHERE "NationalIdCardNo" = v_NationalIdCardNo;
+    
+    IF v_Count > 0 THEN
+        v_Status := 'FAILED';
+        v_Message := 'NationalIdCardNo already exists';
+        v_Err_Details := 'Duplicate NationalIdCardNo: ' || v_NationalIdCardNo;
+        RETURN;
+    END IF;
+    
+    --CHECK MOBILE NUMBER DUPLICATION
+    SELECT COUNT(*) INTO v_count FROM "UsersBasic"
+    WHERE "ContactMobileNo" = v_ContactMobileNo;
+    
+    IF v_Count > 0 THEN
+        v_Status := 'FAILED';
+        v_Message := 'ContactMobileNo already exists';
+        v_Err_Details := 'Duplicate ContactMobileNo: ' || v_ContactMobileNo;
+        RETURN;
+    END IF;
+    
+
+    INSERT INTO "UsersBasic" ("Name", "Sex", "DateOfBirth", "Nationality", "Email", 
+    "NationalIdCardNo", "ContactMobileNo", "Password")
+    VALUES(v_Name, v_Sex, v_DateOfBirth, v_Nationality, v_Email, v_NationalIdCardNo, v_ContactMobileNo,
+    v_Password) RETURNING "Id" INTO v_Id;
+    
+    v_Status := 'SUCCESS';
+    v_Message := 'Applicant created successfully';
+    v_Err_Details := NULL;
+    
+    
+    EXCEPTION
+    WHEN OTHERS THEN
+        v_Status := 'FAILED';
+        v_Message := 'Unexpected error';
+        v_Err_Details := SQLERRM;
+END;
+
+
+create or replace PROCEDURE SET_APPLICANTS_DETAILS(
+    v_PresentAreaOrVillageOrHouseOrRoad     "UsersDetails"."PresentAreaOrVillageOrHouseOrRoad"%TYPE,
+    v_PresentPostOffice                     "UsersDetails"."PresentPostOffice"%TYPE,
+    v_PresentPoliceStation                  "UsersDetails"."PresentPoliceStation"%TYPE,
+    v_PresentPostalCode                     "UsersDetails"."PresentPostalCode"%TYPE,
+    v_PresentDistrict                       "UsersDetails"."PresentDistrict"%TYPE,
+    v_PermanentAreaOrVillageOrHouseOrRoad   "UsersDetails"."PermanentAreaOrVillageOrHouseOrRoad"%TYPE,
+    v_PermanentPostOffice                   "UsersDetails"."PermanentPostOffice"%TYPE,
+    v_PermanentPoliceStation                "UsersDetails"."PermanentPoliceStation"%TYPE,
+    v_PermanentPostalCode                   "UsersDetails"."PermanentPostalCode"%TYPE,
+    v_PermanentDistrict                     "UsersDetails"."PermanentDistrict"%TYPE,
+    v_HomeDistrict                          "UsersDetails"."HomeDistrict"%TYPE,
+    v_CareerObjective                       "UsersDetails"."CareerObjective"%TYPE,
+    v_MaritalStatus                         "UsersDetails"."MaritalStatus"%TYPE,
+    v_Religion                              "UsersDetails"."Religion"%TYPE,
+    v_FathersName                           "UsersDetails"."FathersName"%TYPE,
+    v_MothersName                           "UsersDetails"."MothersName"%TYPE,
+    v_Spouse                                "UsersDetails"."Spouse"%TYPE,
+    v_UserId                                "UsersDetails"."UserId"%TYPE,
+    v_HasExperience                         "UsersDetails"."HasExperience"%TYPE,
+    v_ComputerLiteracy                      "UsersDetails"."ComputerLiteracy"%TYPE
+)IS
+BEGIN
+    INSERT INTO "UsersDetails" ("PresentAreaOrVillageOrHouseOrRoad", "PresentPostOffice", "PresentPoliceStation", "PresentPostalCode",
+    "PresentDistrict", "PermanentAreaOrVillageOrHouseOrRoad", "PermanentPostOffice", "PermanentPoliceStation",
+    "PermanentPostalCode", "PermanentDistrict", "HomeDistrict", "CareerObjective", "MaritalStatus", "Religion", "FathersName",
+    "MothersName", "Spouse", "UserId", "HasExperience", "ComputerLiteracy") 
+    VALUES (v_PresentAreaOrVillageOrHouseOrRoad, 
+    v_PresentPostOffice, v_PresentPoliceStation, v_PresentPostalCode, v_PresentDistrict, v_PermanentAreaOrVillageOrHouseOrRoad,
+    v_PermanentPostOffice, v_PermanentPoliceStation, v_PermanentPostalCode, v_PermanentDistrict, v_HomeDistrict,
+    v_CareerObjective, v_MaritalStatus, v_Religion, v_FathersName, v_MothersName, v_Spouse, v_UserId, v_HasExperience, v_ComputerLiteracy);
+END;
+
+
+create or replace PROCEDURE SET_APPLICANTS_EDU_QUALIFICATIONS(
+    v_NameOfExamination         "UsersEducationalQualifications"."NameOfExamination"%TYPE,
+    v_GroupOrSubject            "UsersEducationalQualifications"."GroupOrSubject"%TYPE,
+    v_DivisionOrClassOrGrade    "UsersEducationalQualifications"."DivisionOrClassOrGrade"%TYPE,
+    v_GpaOrCgpa                 "UsersEducationalQualifications"."GpaOrCgpa"%TYPE,
+    v_GpaOutOf                  "UsersEducationalQualifications"."GpaOutOf"%TYPE,
+    v_RollNo                    "UsersEducationalQualifications"."RollNo"%TYPE,
+    v_BoardOrUnicersity         "UsersEducationalQualifications"."BoardOrUnicersity"%TYPE,
+    v_PassingYear               "UsersEducationalQualifications"."PassingYear"%TYPE,
+    v_UserId                    "UsersEducationalQualifications"."UserId"%TYPE
+)
+IS
+BEGIN
+    IF  v_NameOfExamination IS NOT NULL
+        AND v_GroupOrSubject IS NOT NULL AND v_GroupOrSubject != '-1'
+        AND v_DivisionOrClassOrGrade IS NOT NULL AND v_DivisionOrClassOrGrade != '--Select--'
+        AND v_GpaOrCgpa IS NOT NULL AND v_GpaOrCgpa != -1
+        AND v_GpaOutOf IS NOT NULL AND v_GpaOutOf != -1
+        AND v_RollNo IS NOT NULL
+        AND v_BoardOrUnicersity IS NOT NULL AND v_BoardOrUnicersity != '-1'
+        AND v_PassingYear IS NOT NULL AND v_PassingYear != -1
+        AND v_UserId IS NOT NULL AND v_UserId != -1
+    THEN
+        INSERT INTO "UsersEducationalQualifications" (
+            "NameOfExamination", "GroupOrSubject", "DivisionOrClassOrGrade",
+            "GpaOrCgpa", "GpaOutOf", "RollNo", "BoardOrUnicersity",
+            "PassingYear", "UserId"
+        )
+        VALUES (
+            v_NameOfExamination, v_GroupOrSubject, v_DivisionOrClassOrGrade,
+            v_GpaOrCgpa, v_GpaOutOf, v_RollNo, v_BoardOrUnicersity,
+            v_PassingYear, v_UserId
+        );
+    END IF;
+END;
+
+
+create or replace PROCEDURE SET_APPLICANTS_EXPERIENCES(
+    v_Designation           "UsersExperiences"."Designation"%TYPE,
+    v_NameOfOrganization    "UsersExperiences"."NameOfOrganization"%TYPE,
+    v_JobType               "UsersExperiences"."JobType"%TYPE,
+    v_Responsibilities      "UsersExperiences"."Responsibilities"%TYPE,
+    v_JoiningDate           "UsersExperiences"."JoiningDate"%TYPE,
+    v_ReleaseDate           "UsersExperiences"."ReleaseDate"%TYPE,
+    v_UserId                "UsersExperiences"."UserId"%TYPE,
+    v_Continuing            "UsersExperiences"."Continuing"%TYPE
+)
+IS
+BEGIN
+    IF v_Designation IS NOT NULL
+       AND v_NameOfOrganization IS NOT NULL
+       AND v_JobType IS NOT NULL AND v_JobType != '-1'
+       AND v_Responsibilities IS NOT NULL
+       AND v_JoiningDate IS NOT NULL
+       AND v_UserId IS NOT NULL AND v_UserId != -1
+    THEN
+        INSERT INTO "UsersExperiences" (
+            "Designation", "NameOfOrganization", "JobType",
+            "Responsibilities", "JoiningDate", "ReleaseDate",
+            "UserId", "Continuing"
+        )
+        VALUES (
+            v_Designation, v_NameOfOrganization, v_JobType,
+            v_Responsibilities, v_JoiningDate, v_ReleaseDate,
+            v_UserId, v_Continuing
+        );
+    END IF;
+END;
+
+create or replace PROCEDURE SET_APPLICANTS_LANG_PROFECIENCIES(
+    v_LanguageName      "UsersLanguageproficiencies"."LanguageName"%TYPE,
+    v_Speaking          "UsersLanguageproficiencies"."Speaking"%TYPE,
+    v_Reading           "UsersLanguageproficiencies"."Reading"%TYPE,
+    v_Listening         "UsersLanguageproficiencies"."Listening"%TYPE,
+    v_Writing           "UsersLanguageproficiencies"."Writing"%TYPE,
+    v_UserId            "UsersLanguageproficiencies"."UserId"%TYPE
+)
+IS
+BEGIN
+    IF v_LanguageName IS NOT NULL AND v_LanguageName != '-1'
+       AND v_Speaking IS NOT NULL AND v_Speaking != '-1'
+       AND v_Reading IS NOT NULL AND v_Reading != '-1'
+       AND v_Listening IS NOT NULL AND v_Listening != '-1'
+       AND v_Writing IS NOT NULL AND v_Writing != '-1'
+       AND v_UserId IS NOT NULL AND v_UserId != -1
+    THEN
+        INSERT INTO "UsersLanguageproficiencies" (
+            "LanguageName", "Speaking", "Reading", "Listening", "Writing", "UserId"
+        )
+        VALUES (
+            v_LanguageName, v_Speaking, v_Reading, v_Listening, v_Writing, v_UserId
+        );
+    END IF;
+END;
+
+
+create or replace PROCEDURE SET_APPLICANTS_PHOTO(
+    v_ImageData         "UsersPhotos"."ImageData"%TYPE,
+    v_FileName          "UsersPhotos"."FileName"%TYPE,
+    v_ContentType       "UsersPhotos"."ContentType"%TYPE,
+    v_UserId            "UsersPhotos"."UserId"%TYPE
+)IS
+BEGIN
+    INSERT INTO "UsersPhotos" ("ImageData", "FileName", "ContentType", "UserId")
+    VALUES (v_ImageData, v_FileName, v_ContentType, v_UserId);
+END;
+
+create or replace PROCEDURE SET_APPLICANTS_PRS_CERTIFICATION(
+    v_Certification         "UsersPersonalCertifications"."Certification"%TYPE,
+    v_NameOfInstitution     "UsersPersonalCertifications"."NameOfInstitution"%TYPE,
+    v_Location              "UsersPersonalCertifications"."Location"%TYPE,
+    v_FromDate              "UsersPersonalCertifications"."FromDate"%TYPE,
+    v_ToDate                "UsersPersonalCertifications"."ToDate"%TYPE,
+    v_UserId                "UsersPersonalCertifications"."UserId"%TYPE
+)
+IS 
+BEGIN
+    IF v_Certification IS NOT NULL AND v_Certification != '-1'
+       AND v_NameOfInstitution IS NOT NULL AND v_NameOfInstitution != '-1'
+       AND v_Location IS NOT NULL AND v_Location != '-1'
+       AND v_FromDate IS NOT NULL
+       AND v_ToDate IS NOT NULL
+       AND v_UserId IS NOT NULL AND v_UserId != -1
+    THEN
+        INSERT INTO "UsersPersonalCertifications" (
+            "Certification", "NameOfInstitution", "Location", 
+            "FromDate", "ToDate", "UserId"
+        ) 
+        VALUES (
+            v_Certification, v_NameOfInstitution, v_Location, 
+            v_FromDate, v_ToDate, v_UserId
+        );
+    END IF;
+END;
+create or replace PROCEDURE SET_APPLICANTS_REFERENCES(
+    v_Name          "UsersReferences"."Name"%TYPE,
+    v_Address       "UsersReferences"."Address"%TYPE,
+    v_ContactNo     "UsersReferences"."ContactNo"%TYPE,
+    v_Email         "UsersReferences"."Email"%TYPE,
+    v_UserId        "UsersReferences"."UserId"%TYPE
+)
+IS
+BEGIN
+    IF v_Name IS NOT NULL
+       AND v_Address IS NOT NULL
+       AND v_ContactNo IS NOT NULL
+       AND v_Email IS NOT NULL
+       AND v_UserId IS NOT NULL AND v_UserId != -1
+    THEN
+        INSERT INTO "UsersReferences" (
+            "Name", "Address", "ContactNo", "Email", "UserId"
+        )
+        VALUES (
+            v_Name, v_Address, v_ContactNo, v_Email, v_UserId
+        );
+    END IF;
+END;
+
+
+create or replace PROCEDURE SET_APPLICANTS_SIGNATURE(
+    v_ImageData         "UsersSignatures"."ImageData"%TYPE,
+    v_FileName          "UsersSignatures"."FileName"%TYPE,
+    v_ContentType       "UsersSignatures"."ContentType"%TYPE,
+    v_UserId            "UsersSignatures"."UserId"%TYPE
+)IS
+BEGIN
+    INSERT INTO "UsersSignatures" ("ImageData", "FileName", "ContentType", "UserId")
+    VALUES (v_ImageData, v_FileName, v_ContentType, v_UserId);
+END;
+
+
+create or replace PROCEDURE SET_APPLICATION(
+    O_STATUS             OUT VARCHAR2,
+    O_MESSAGE            OUT VARCHAR2,
+    O_ERR_DETAILS        OUT VARCHAR2,
+    
+    P_JobID              IN "AllApplications"."JobID"%TYPE,
+    P_ApplicantID        IN "AllApplications"."ApplicantID"%TYPE,
+    P_ApplyDate          IN "AllApplications"."ApplyDate"%TYPE
+)IS
+    V_Count NUMBER;
+BEGIN
+    BEGIN 
+        
+        SELECT COUNT(*) INTO V_Count FROM "AllApplications" WHERE
+        "JobID" = P_JobID AND "ApplicantID" = P_ApplicantID;
+        
+        IF V_Count > 0 THEN
+            O_STATUS         := 'FAILED';
+            O_MESSAGE        := 'ALREADY APPLIED';
+            O_ERR_DETAILS    := '';
+            RETURN;
+        END IF;
+        
+        INSERT INTO "AllApplications" ("JobID", "ApplicantID", "ApplyDate")
+        VALUES (P_JobID, P_ApplicantID, P_ApplyDate);
+
+        O_STATUS         := 'SUCCESS';
+        O_MESSAGE        := 'APPLICATION INSERTED';
+        O_ERR_DETAILS    := '';
+
+    EXCEPTION
+        WHEN OTHERS THEN
+            O_STATUS         := 'FAILED';
+            O_MESSAGE        := 'CANNOT INSERT';
+            O_ERR_DETAILS    := '';
+
+    END;
+EXCEPTION
+    WHEN OTHERS THEN 
+        O_STATUS         := 'FAILED';
+        O_MESSAGE        := 'SOMETHING WENT WRONG';
+        O_ERR_DETAILS    := '';
+END;
+
+
+create or replace PROCEDURE SET_NEW_PASSWORD(
+
+    v_Status        OUT VARCHAR2,
+    v_Message       OUT VARCHAR2,
+    v_Err_Details   OUT VARCHAR2,
+    
+    v_Id            IN "UsersBasic"."Id"%TYPE,
+    v_NewPassword   IN "UsersBasic"."Password"%TYPE
+)IS
+
+BEGIN
+    
+    IF v_Id = 0 THEN
+        v_Status := 'FAILED';
+        v_Message := 'CAN''T UPDATE TWICE IN A ROW';
+        v_Err_Details := '';
+        RETURN;
+    END IF;
+    
+    UPDATE "UsersBasic" SET "Password" = v_NewPassword
+    WHERE "Id" = v_Id;
+
+    v_Status := 'SUCCESS';                 
+    v_Message := 'NEW PASSWORD INSERTED';              
+    v_Err_Details := '';
+
+EXCEPTION
+    WHEN OTHERS THEN
+        v_Status := 'FAILED';
+        v_Message := 'An error occurred';
+        v_Err_Details := SQLERRM;
+
+END;
+
+
+
+create or replace PROCEDURE T_ADD(V_NUM1 NUMBER, V_NUM2 NUMBER, V_RESULT OUT NUMBER) AS
+BEGIN
+V_RESULT  := V_NUM1 + V_NUM2;
+END;
+
+create or replace PROCEDURE TESTEMP_IN(
+
+    V_ID OUT TESTEMP.EMPLOYEEID%TYPE,
+    
+    V_FIRST_NAME IN VARCHAR2,
+    V_LAST_NAME IN VARCHAR2,
+    V_EMAIL IN VARCHAR2
+)
+IS
+BEGIN
+INSERT INTO TESTEMP(FIRSTNAME, LASTNAME, EMAIL) VALUES (V_FIRST_NAME, V_LAST_NAME, V_EMAIL)
+RETURNING EMPLOYEEID INTO V_ID;
+END;
+
+
+create or replace PROCEDURE TESTEMP_OUT(
+        C_TESTEMP OUT SYS_REFCURSOR
+)IS
+BEGIN
+    OPEN C_TESTEMP FOR
+    SELECT EMPLOYEEID, FIRSTNAME, LASTNAME, EMAIL FROM TESTEMP;
+END;
+
+create or replace PROCEDURE TESTPROJ_OUT(
+    V_EMPID IN TESTEMP.EMPLOYEEID%TYPE,
+    C_TESTEMP OUT SYS_REFCURSOR
+)IS
+
+BEGIN
+OPEN C_TESTEMP FOR
+    SELECT PROJECT_ID, PROJECT_NAME, COMPLETION_DATE, EMPLOYEEID FROM TESTPROJECT
+    WHERE EMPLOYEEID = V_EMPID;
+END;
+
+create or replace PROCEDURE TESTPROJECTS_IN(
+
+        V_PROJECT_NAME      IN TESTPROJECT.PROJECT_NAME%TYPE,
+        V_COMPLETION_DATE   IN TESTPROJECT.COMPLETION_DATE%TYPE,
+        V_EMPLOYEEID        IN TESTPROJECT.EMPLOYEEID%TYPE
+)IS
+
+BEGIN
+    INSERT INTO TESTPROJECT (PROJECT_NAME, COMPLETION_DATE, EMPLOYEEID) 
+    VALUES (V_PROJECT_NAME , V_COMPLETION_DATE,V_EMPLOYEEID);
+END;
+
+
+create or replace PROCEDURE TESTPROJIMG_IN(
+        V_IMAGEDATA     IN TESTPROJIMAGE.IMAGEDATA%TYPE,
+        V_FILENAME      IN TESTPROJIMAGE.FILENAME%TYPE,
+        V_CONTENTTYPE   IN TESTPROJIMAGE.CONTENTTYPE%TYPE,
+        V_EMPLOYEEID    IN TESTPROJIMAGE.EMPLOYEEID%TYPE
+)IS
+BEGIN
+    INSERT INTO TESTPROJIMAGE(IMAGEDATA, FILENAME, CONTENTTYPE, EMPLOYEEID) 
+    VALUES (V_IMAGEDATA, V_FILENAME, V_CONTENTTYPE, V_EMPLOYEEID);
+END;
+
+
+
+create or replace PROCEDURE TESTPROJIMG_OUT(
+        
+        V_EMPID         IN  TESTPROJIMAGE.EMPLOYEEID%TYPE,
+        
+        V_IMG_ID        OUT TESTPROJIMAGE.IMG_ID%TYPE,
+        V_IMAGEDATA     OUT TESTPROJIMAGE.IMAGEDATA%TYPE,
+        V_FILENAME      OUT TESTPROJIMAGE.FILENAME%TYPE,
+        V_CONTENTTYPE   OUT TESTPROJIMAGE.CONTENTTYPE%TYPE,
+        V_EMPLOYEEID    OUT TESTPROJIMAGE.EMPLOYEEID%TYPE
+)IS
+BEGIN
+    SELECT IMG_ID, IMAGEDATA, FILENAME, CONTENTTYPE, EMPLOYEEID INTO 
+    V_IMG_ID, V_IMAGEDATA, V_FILENAME, V_CONTENTTYPE, V_EMPLOYEEID FROM TESTPROJIMAGE
+    WHERE EMPLOYEEID = V_EMPID;
+
+EXCEPTION
+WHEN NO_DATA_FOUND THEN
+        V_IMG_ID := -1;
+        V_IMAGEDATA := NULL;    
+        V_FILENAME  := '';  
+        V_CONTENTTYPE := '';
+        V_EMPLOYEEID := V_EMPID;
+END;
+
+
+
+create or replace PROCEDURE USER_AVAILABLE(
+    v_Status        OUT VARCHAR2,
+    v_Message       OUT VARCHAR2,
+    v_Err_Details   OUT VARCHAR2,
+    
+    v_Id            IN "UsersBasic"."Id"%TYPE,
+    v_DOB           IN "UsersBasic"."DateOfBirth"%TYPE,
+    v_ContactNo     IN "UsersBasic"."ContactMobileNo"%TYPE
+)IS
+    v_Count NUMBER;
+BEGIN
+    SELECT COUNT(*) INTO v_Count FROM "UsersBasic"
+    WHERE "Id" = v_Id AND "DateOfBirth" = v_DOB AND "ContactMobileNo" = v_ContactNo;
+
+    IF v_Count = 1 THEN
+
+        v_Status := 'SUCCESS';                 
+        v_Message := 'APPLICANT AVAILABLE';              
+        v_Err_Details := '';
+
+    ELSIF v_Count = 0 THEN
+        v_Status := 'FAILED';                 
+        v_Message := 'NO APPLICANT FOUND';              
+        v_Err_Details := '';
+
+    ELSE
+        v_Status := 'FAILED';                 
+        v_Message := 'SOMETHING WENT WRONG';              
+        v_Err_Details := '';
+    END IF;
+
+    EXCEPTION
+    WHEN OTHERS THEN
+        v_Status := 'FAILED';
+        v_Message := 'An error occurred';
+        v_Err_Details := SQLERRM;
+END;
+
+
+create or replace PROCEDURE VALIDATE_USER(
+    v_id            IN "UsersBasic"."Id"%TYPE,
+    v_password      IN "UsersBasic"."Password"%TYPE,
+    v_is_valid          OUT NUMBER
+    
+)IS
+BEGIN
+SELECT COUNT(*) INTO v_is_valid FROM "UsersBasic"
+WHERE  "Id" = v_id AND "Password" = v_password;
+END;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

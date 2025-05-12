@@ -1,85 +1,3 @@
-create or replace PROCEDURE ADD_A_TESTEMP(
-                V_FIRST_NAME IN TESTEMP.FIRSTNAME%TYPE,
-                V_LAST_NAME IN TESTEMP.FIRSTNAME%TYPE,
-                V_EMAIL IN TESTEMP.EMAIL%TYPE
-)IS
-
-BEGIN
-    INSERT INTO TESTEMP( FIRSTNAME, LASTNAME, EMAIL )
-    VALUES (V_FIRST_NAME, V_LAST_NAME, V_EMAIL);
-END;
-
-create or replace PROCEDURE add_job_history
-  (  p_emp_id          job_history.employee_id%type
-   , p_start_date      job_history.start_date%type
-   , p_end_date        job_history.end_date%type
-   , p_job_id          job_history.job_id%type
-   , p_department_id   job_history.department_id%type
-   )
-IS
-BEGIN
-  INSERT INTO job_history (employee_id, start_date, end_date,
-                           job_id, department_id)
-    VALUES(p_emp_id, p_start_date, p_end_date, p_job_id, p_department_id);
-END add_job_history;
-
-
-create or replace PROCEDURE CHANGE_APPLICANTS_PASSWORD(
-
-    v_Status        OUT VARCHAR2,
-    v_Message       OUT VARCHAR2,
-    v_Err_Details   OUT VARCHAR2,
-    
-    v_Id            IN "UsersBasic"."Id"%TYPE,
-    v_password      IN "UsersBasic"."Password"%TYPE,
-    v_NewPassword   IN "UsersBasic"."Password"%TYPE
-)IS
-    v_Count NUMBER;
-BEGIN
-    
-    SELECT COUNT(*)INTO v_Count FROM "UsersBasic" 
-    WHERE "Id" = v_Id AND "Password" = v_password;
-    
-    IF v_Count = 1 THEN
-        UPDATE "UsersBasic" set "Password" = v_NewPassword 
-        WHERE "Id" = v_Id;
-        
-        v_Status := 'SUCCESS';                 
-        v_Message := 'Password Changed';              
-        v_Err_Details := '';
-        
-    ELSE
-        v_Status := 'FAILED';                 
-        v_Message := 'Password Cannot be Changed'; 
-        v_Err_Details := 'ID or Password not Matched';               
-    END IF;
-    
-EXCEPTION
-    WHEN OTHERS THEN
-        v_Status := 'FAILED';
-        v_Message := 'An error occurred';
-        v_Err_Details := SQLERRM;
-END;
-
-
-
-create or replace procedure cw(v_text in varchar2) as
-begin
-dbms_output.put_line(v_text);
-end;
-
-
-
-create or replace PROCEDURE DELETE_USER_EDU_QUALIFICATIONS(
-    v_UserId IN NUMBER
-)
-IS
-BEGIN
-    DELETE FROM "UsersEducationalQualifications"
-    WHERE "UserId" = v_UserId;
-END;
-
-
 create or replace PROCEDURE GET_A_JOBS_DETAILS(
     P_Id                    IN "AvailableJobs"."JobID"%TYPE,
     
@@ -139,6 +57,54 @@ EXCEPTION
         O_ERR_DETAILS := O_STATUS || ': ' || SQLERRM;
 
 END;
+create or replace PROCEDURE CHANGE_APPLICANTS_PASSWORD(
+
+    v_Status        OUT VARCHAR2,
+    v_Message       OUT VARCHAR2,
+    v_Err_Details   OUT VARCHAR2,
+    
+    v_Id            IN "UsersBasic"."Id"%TYPE,
+    v_password      IN "UsersBasic"."Password"%TYPE,
+    v_NewPassword   IN "UsersBasic"."Password"%TYPE
+)IS
+    v_Count NUMBER;
+BEGIN
+    
+    SELECT COUNT(*)INTO v_Count FROM "UsersBasic" 
+    WHERE "Id" = v_Id AND "Password" = v_password;
+    
+    IF v_Count = 1 THEN
+        UPDATE "UsersBasic" set "Password" = v_NewPassword 
+        WHERE "Id" = v_Id;
+        
+        v_Status := 'SUCCESS';                 
+        v_Message := 'Password Changed';              
+        v_Err_Details := '';
+        
+    ELSE
+        v_Status := 'FAILED';                 
+        v_Message := 'Password Cannot be Changed'; 
+        v_Err_Details := 'ID or Password not Matched';               
+    END IF;
+    
+EXCEPTION
+    WHEN OTHERS THEN
+        v_Status := 'FAILED';
+        v_Message := 'An error occurred';
+        v_Err_Details := SQLERRM;
+END;
+
+
+
+create or replace PROCEDURE DELETE_USER_EDU_QUALIFICATIONS(
+    v_UserId IN NUMBER
+)
+IS
+BEGIN
+    DELETE FROM "UsersEducationalQualifications"
+    WHERE "UserId" = v_UserId;
+END;
+
 
 
 create or replace PROCEDURE GET_A_JOBS_REQUIREMENTS(
